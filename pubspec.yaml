@@ -80,7 +80,7 @@ flutter:
         - asset: assets/fonts/inter/Inter-Light.ttf
           weight: 300
         - asset: assets/fonts/inter/Inter-Regular.ttf
-          weight: normal
+          style: normal
         - asset: assets/fonts/inter/Inter-Medium.ttf
           weight: 500
         - asset: assets/fonts/inter/Inter-SemiBold.ttf
