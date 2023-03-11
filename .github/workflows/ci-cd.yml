@@ -1,0 +1,58 @@
+name: CI/CD
+
+on: 
+  push:
+    tags:
+      - v*
+
+jobs:
+  flutter_test:
+    name: Run Flutter analyze and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter format --dry-run --set-exit-if-changed lib/
+      - run: flutter format --dry-run --set-exit-if-changed test/
+      - run: flutter test --coverage
+      - run: flutter test --machine > test-results.json
+      - uses: actions/upload-artifact@v3  # upload test results
+        if: success() || failure()        # run this step even if previous step failed
+        with:
+          name: test-results
+          path: test-results.json
+
+      - uses: VeryGoodOpenSource/very_good_coverage@v2
+        with:
+          min_coverage: 0
+
+  build_appbundle:
+    name: Build Flutter (Android)
+    needs: [flutter_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter clean
+      - run: flutter build appbundle
+      - name: Upload appbundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: appbundle
+          path: build/app/outputs/bundle/release/app-release.aab
