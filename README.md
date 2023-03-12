@@ -5,3 +5,4 @@ Atividade 01:
  - [ ] ThemeData
  - [ ] Estilos diferentes de Fonts
  - [ ] Preparando Extensions de UI
+ - [ ] Dotenv
