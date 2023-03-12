@@ -1,3 +1,5 @@
+import 'package:academico_mobile/app/core/ui/theme/theme_config.dart';
+import 'package:academico_mobile/app/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
 class AcademicoMobile extends StatelessWidget {
@@ -7,8 +9,10 @@ class AcademicoMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Academico Mobile',
+      theme: ThemeConfig.theme,
+      debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => Container(),
+        '/': (context) => const SplashPage(),
       },
     );
   }
