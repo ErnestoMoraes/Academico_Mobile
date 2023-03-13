@@ -69,7 +69,7 @@ class MyCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: context.screenHeight * 0.01),
+          SizedBox(height: context.screenHeight * 0.02),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

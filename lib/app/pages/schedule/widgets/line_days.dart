@@ -20,7 +20,7 @@ class LineDays extends StatelessWidget {
     return ElevatedButton(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          nameDay == 'Sun' || nameDay == 'Sat'
+          nameDay == 'Dom' || nameDay == 'Sab'
               ? ColorsApp.instance.cardnoselected
               : isNow!
                   ? ColorsApp.instance.cardwhite
@@ -32,7 +32,7 @@ class LineDays extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: nameDay == 'Sun' || nameDay == 'Sat' ? null : () {
+      onPressed: nameDay == 'Dom' || nameDay == 'Sab' ? null : () {
         print('Clicou no dia $nameDay');
       },
       child: SizedBox(
@@ -42,16 +42,16 @@ class LineDays extends StatelessWidget {
           children: [
             Text(
               nameDay,
-              style: TextStyles.instance.texLabelH5.copyWith(
+              style: TextStyles.instance.texLabelH4.copyWith(
                 color: ColorsApp.instance.labelblack3,
                 fontWeight: TextStyles.instance.textSemiBold.fontWeight,
               ),
             ),
             Text(
               numberDay,
-              style: TextStyles.instance.texLabelH5.copyWith(
+              style: TextStyles.instance.texLabelH4.copyWith(
                 color: ColorsApp.instance.labelblack4,
-                fontWeight: TextStyles.instance.textSemiBold.fontWeight,
+                fontWeight: TextStyles.instance.textExtraBold.fontWeight,
               ),
             ),
           ],
