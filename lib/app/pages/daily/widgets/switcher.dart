@@ -9,6 +9,7 @@ class Switcher extends StatefulWidget {
 }
 
 class _SwitcherState extends State<Switcher> {
+  
   EdgeInsetsGeometry padding = const EdgeInsets.symmetric(
     horizontal: 15,
     vertical: 10,
