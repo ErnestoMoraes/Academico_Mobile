@@ -1,3 +1,4 @@
+import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/widgets/my_card.dart';
 import 'package:academico_mobile/app/pages/schedule/widgets/line_days.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +13,13 @@ class SchedulePage extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isNow = true;
     List<String> days = [
-      'Sun',
-      'Mon',
-      'Tue',
-      'Wed',
-      'Thu',
-      'Fri',
-      'Sat',
+      'Dom',
+      'Seg',
+      'Ter',
+      'Qua',
+      'Qui',
+      'Sex',
+      'Sab',
     ];
     List<Map<String, dynamic>> horarios = [
       {
@@ -37,7 +38,7 @@ class SchedulePage extends StatelessWidget {
         'professor': 'KILBERT AMORIM MACIEL',
       },
       {
-        'isNow': true,
+        'isNow': false,
         'horario': '22:00',
         'sala': 'R011_LINF3',
         'disciplina': 'TRABALHO DE CONCLUSÃO DE CURSO III',
@@ -86,7 +87,7 @@ class SchedulePage extends StatelessWidget {
                 Text('Semana', style: TextStyles.instance.labelPage),
               ],
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: context.percentWidth(0.05)),
             SizedBox(
               height: 80,
               child: ListView.builder(
@@ -104,13 +105,13 @@ class SchedulePage extends StatelessWidget {
                 },
               ),
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: context.percentWidth(0.05)),
             Row(
               children: [
                 Text('Disciplinas', style: TextStyles.instance.labelPage),
               ],
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: context.percentWidth(0.05)),
             Expanded(
               child: ListView.builder(
                 itemCount: horarios.length,
