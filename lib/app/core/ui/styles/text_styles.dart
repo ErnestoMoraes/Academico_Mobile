@@ -39,6 +39,10 @@ class TextStyles {
       textRegular.copyWith(color: ColorsApp.instance.cardwhite, fontSize: 16);
   TextStyle get texLabelH5 =>
       textRegular.copyWith(color: ColorsApp.instance.cardwhite, fontSize: 12);
+
+  TextStyle get labelPage => texLabelH2.copyWith(
+      color: ColorsApp.instance.cardwhite,
+      fontWeight: TextStyles.instance.textExtraBold.fontWeight);
 }
 
 extension TextStylesExtension on BuildContext {
