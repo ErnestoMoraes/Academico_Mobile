@@ -12,12 +12,12 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
 
   @override
   Future<void> findSchedule() async {
-    try {
-      var result = await webview
-          .unauth()
-          .loadRequest(Uri.parse(Env.instance['URL_SCHECULE'] ?? ''));
-    } on Exception catch (e) {
-      throw RepositoryExceptions(e.toString());
-    }
+    // try {
+    //   var result = await webview
+    //       .unauth()
+    //       .loadRequest(Uri.parse(Env.instance['URL_SCHECULE'] ?? ''));
+    // } on Exception catch (e) {
+    //   throw RepositoryExceptions(e.toString());
+    // }
   }
 }
