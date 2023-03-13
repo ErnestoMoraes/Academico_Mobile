@@ -6,3 +6,5 @@ Atividade 01:
  - [ ] Estilos diferentes de Fonts
  - [ ] Preparando Extensions de UI
  - [ ] Dotenv
+ - [ ] RestClient - Dio
+ 
