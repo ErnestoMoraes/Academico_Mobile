@@ -1,4 +1,5 @@
 import 'package:academico_mobile/app/core/ui/theme/theme_config.dart';
+import 'package:academico_mobile/app/pages/daily/daily_page.dart';
 import 'package:academico_mobile/app/pages/home/home_page.dart';
 import 'package:academico_mobile/app/pages/schedule/schedule_page.dart';
 import 'package:academico_mobile/app/pages/splash/splash_page.dart';
@@ -17,6 +18,7 @@ class AcademicoMobile extends StatelessWidget {
         '/': (context) => const SplashPage(),
         '/home': (context) => const HomePage(),
         '/schedule': (context) => const SchedulePage(),
+        '/daily': (context) => const DailyPage(),
       },
     );
   }
