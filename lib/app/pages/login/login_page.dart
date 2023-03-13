@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextButton(
                   onPressed: () {},
                   child: Text(
-                    'Esqueceu seu senha? Recuperar senha',
+                    'Esqueceu sua senha? Recuperar senha.',
                     style: TextStyles.instance.texLabelH4.copyWith(
                       color: ColorsApp.instance.labelblack4,
                       fontWeight: TextStyles.instance.textSemiBold.fontWeight,
