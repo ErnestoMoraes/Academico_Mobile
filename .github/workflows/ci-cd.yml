@@ -59,7 +59,7 @@ jobs:
 
   email:
     name: Enviando Email
-    needs: [build_appbundle]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
     - name: Download APK Artifact
