@@ -12,6 +12,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   webview_flutter: ^4.0.6
   flutter_svg: ^2.0.3
+  loading_gifs: ^0.3.0
 
 dev_dependencies:
   flutter_test:

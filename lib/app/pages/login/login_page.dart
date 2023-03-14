@@ -36,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: context.percentHeight(.1),
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       style: TextStyles.instance.texLabelH4.copyWith(
                         color: ColorsApp.instance.labelblack1,
                         fontSize: 20,
@@ -85,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                               height: context.percentHeight(.15),
                               label: 'Acessar',
                               onPressed: () {
-                                Navigator.of(context).pushNamed('/home');
+                                Navigator.of(context).pushNamed('/daily');
                               },
                             ),
                           ),

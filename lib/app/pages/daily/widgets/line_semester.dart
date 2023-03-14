@@ -3,15 +3,13 @@ import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:flutter/material.dart';
 import '../../../core/ui/styles/text_styles.dart';
 
-class LineDays extends StatelessWidget {
+class LineSemester extends StatelessWidget {
   final String nameDay;
-  final String? numberDay;
   final bool? isNow;
 
-  const LineDays({
+  const LineSemester({
     super.key,
     required this.nameDay,
-    this.numberDay,
     this.isNow = false,
   });
 
@@ -38,7 +36,7 @@ class LineDays extends StatelessWidget {
               print('Clicou no dia $nameDay');
             },
       child: SizedBox(
-        height: context.percentHeight(.2),
+        height: context.percentHeight(.1),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -47,13 +45,6 @@ class LineDays extends StatelessWidget {
               style: TextStyles.instance.texLabelH4.copyWith(
                 color: ColorsApp.instance.labelblack3,
                 fontWeight: TextStyles.instance.textSemiBold.fontWeight,
-              ),
-            ),
-            Text(
-              numberDay?? '',
-              style: TextStyles.instance.texLabelH4.copyWith(
-                color: ColorsApp.instance.labelblack4,
-                fontWeight: TextStyles.instance.textExtraBold.fontWeight,
               ),
             ),
           ],

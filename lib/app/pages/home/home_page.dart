@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, listaCards[index]['route']!);
+                      // Navigator.pushNamed(context, listaCards[index]['route']!);
                     },
                     child: Container(
                       decoration: BoxDecoration(

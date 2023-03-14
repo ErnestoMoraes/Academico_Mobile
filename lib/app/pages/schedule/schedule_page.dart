@@ -9,7 +9,7 @@ class SchedulePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // bool isNow = true;
+    bool isNow = true;
     List<String> days = [
       'Dom',
       'Seg',

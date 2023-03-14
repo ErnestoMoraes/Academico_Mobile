@@ -12,7 +12,6 @@ class ScheduleModel {
     required this.semestreAtual,
     required this.semana,
   });
-
 }
 
 ///matricula: 2020100000000
