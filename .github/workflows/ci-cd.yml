@@ -53,5 +53,25 @@ jobs:
       - name: Upload apk
         uses: actions/upload-artifact@v3
         with:
-          name: appbundle
+          name: my apk
           path: build/app/outputs/bundle/release/app-release.apk
+          
+  email:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download APK Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: my apk
+    - name: Send Email with APK Attachment
+      uses: dawidd6/action-send-mail@v3.3.0
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: my apk
+        body: Please find attached the APK.
+        from: 'joseernestosantosmoraes@gmail.com'
+        to: 'jose.ernesto.santos07@aluno.ifce.edu.br'
+        attachments: 'app-debug.apk'
