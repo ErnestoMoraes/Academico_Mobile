@@ -75,6 +75,6 @@ jobs:
         password: ${{ secrets.EMAIL_PASSWORD }}
         subject: My APK
         body: Please find attached the APK.
-        from: 'joseernestosantosmoraes@gmail.com'
+        from: ${{ secrets.EMAIL_USERNAME }}
         to: 'jose.ernesto.santos07@aluno.ifce.edu.br'
         attachments: 'app-debug.apk'
