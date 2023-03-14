@@ -55,8 +55,10 @@ jobs:
         with:
           name: my apk
           path: build/app/outputs/bundle/release/app-release.apk
-          
+
   email:
+    name: Enviando Email
+    needs: [build_appbundle]
     runs-on: ubuntu-latest
     steps:
     - name: Download APK Artifact
