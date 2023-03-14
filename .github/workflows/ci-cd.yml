@@ -34,7 +34,7 @@ jobs:
         with:
           min_coverage: 0
 
-  build_appbundle:
+  build:
     name: Build Flutter (Android)
     needs: [flutter_test]
     runs-on: ubuntu-latest
@@ -50,11 +50,12 @@ jobs:
       - run: flutter pub get
       - run: flutter clean
       - run: flutter build apk
-      - name: Upload apk
+
+      - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: my apk
-          path: build/app/outputs/bundle/release/app-release.apk
+          name: My APK
+          path: build/app/outputs/flutter-apk/app-release.apk
 
   email:
     name: Enviando Email
@@ -62,9 +63,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Download APK Artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
-        name: my apk
+        name: My APK
     - name: Send Email with APK Attachment
       uses: dawidd6/action-send-mail@v3.3.0
       with:
@@ -72,7 +73,7 @@ jobs:
         server_port: 587
         username: ${{ secrets.EMAIL_USERNAME }}
         password: ${{ secrets.EMAIL_PASSWORD }}
-        subject: my apk
+        subject: My APK
         body: Please find attached the APK.
         from: 'joseernestosantosmoraes@gmail.com'
         to: 'jose.ernesto.santos07@aluno.ifce.edu.br'
