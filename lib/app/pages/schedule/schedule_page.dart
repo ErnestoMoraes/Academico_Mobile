@@ -2,8 +2,6 @@ import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/widgets/my_card.dart';
 import 'package:academico_mobile/app/pages/schedule/widgets/line_days.dart';
 import 'package:flutter/material.dart';
-
-import '../../core/ui/styles/colors_app.dart';
 import '../../core/ui/styles/text_styles.dart';
 
 class SchedulePage extends StatelessWidget {
@@ -11,7 +9,7 @@ class SchedulePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isNow = true;
+    // bool isNow = true;
     List<String> days = [
       'Dom',
       'Seg',

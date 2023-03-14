@@ -33,7 +33,7 @@ class LineDays extends StatelessWidget {
         ),
       ),
       onPressed: nameDay == 'Dom' || nameDay == 'Sab' ? null : () {
-        print('Clicou no dia $nameDay');
+        // print('Clicou no dia $nameDay');
       },
       child: SizedBox(
         height: context.percentHeight(.2),

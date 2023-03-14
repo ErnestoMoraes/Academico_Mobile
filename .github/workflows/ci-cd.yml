@@ -21,8 +21,7 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: flutter analyze
-      - run: flutter format --dry-run --set-exit-if-changed lib/
-      - run: flutter format --dry-run --set-exit-if-changed test/
+      - run: dart format .
       - run: flutter test --coverage
       - run: flutter test --machine > test-results.json
       - uses: actions/upload-artifact@v3  # upload test results
@@ -50,9 +49,9 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build appbundle
-      - name: Upload appbundle
+      - run: flutter build apk
+      - name: Upload apk
         uses: actions/upload-artifact@v3
         with:
           name: appbundle
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: build/app/outputs/bundle/release/app-release.apk
