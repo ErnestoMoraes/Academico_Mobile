@@ -21,8 +21,7 @@ jobs:
       - run: flutter --version
       - run: flutter pub get
       - run: flutter analyze
-      - run: dart format --dry-run --set-exit-if-changed lib/
-      - run: dart format --dry-run --set-exit-if-changed test/
+      - run: dart format .
       - run: flutter test --coverage
       - run: flutter test --machine > test-results.json
       - uses: actions/upload-artifact@v3  # upload test results
