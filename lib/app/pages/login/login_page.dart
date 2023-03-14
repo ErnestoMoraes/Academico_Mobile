@@ -84,7 +84,9 @@ class _LoginPageState extends State<LoginPage> {
                             child: MyInputButton(
                               height: context.percentHeight(.15),
                               label: 'Acessar',
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pushNamed('/home');
+                              },
                             ),
                           ),
                         ],

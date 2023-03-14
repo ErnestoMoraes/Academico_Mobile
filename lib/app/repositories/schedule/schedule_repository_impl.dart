@@ -1,5 +1,4 @@
-import 'package:academico_mobile/app/core/config/env/env.dart';
-import 'package:academico_mobile/app/core/exceptions/repository_exceptions.dart';
+
 import 'package:academico_mobile/app/core/rest_client/custom_webview.dart';
 
 import './schedule_repository.dart';

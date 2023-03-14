@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
