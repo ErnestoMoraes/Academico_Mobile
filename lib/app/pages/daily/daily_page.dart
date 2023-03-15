@@ -1,6 +1,5 @@
 import 'package:academico_mobile/app/pages/daily/widgets/line_semester.dart';
 import 'package:academico_mobile/app/pages/daily/widgets/switcher.dart';
-import 'package:academico_mobile/app/pages/schedule/widgets/line_days.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/ui/styles/colors_app.dart';

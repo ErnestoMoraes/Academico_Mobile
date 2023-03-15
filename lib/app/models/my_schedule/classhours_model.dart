@@ -1,7 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class DisciplinaModel {
+class ClassHoursModel {
   final int id;
   final String horario;
   final String disciplina;
@@ -9,7 +8,7 @@ class DisciplinaModel {
   final String turma;
   final String sala;
 
-  DisciplinaModel({
+  ClassHoursModel({
     required this.id,
     required this.horario,
     required this.disciplina,
@@ -29,9 +28,9 @@ class DisciplinaModel {
     };
   }
 
-  factory DisciplinaModel.fromMap(Map<String, dynamic> map) {
-    return DisciplinaModel(
-      id: map['id']?.toInt() as int,
+  factory ClassHoursModel.fromMap(Map<String, dynamic> map) {
+    return ClassHoursModel(
+      id: map['id']?.toInt() ?? 0,
       horario: map['horario'] ?? '',
       disciplina: map['disciplina'] ?? '',
       professor: map['professor'] ?? '',
@@ -42,6 +41,14 @@ class DisciplinaModel {
 
   String toJson() => json.encode(toMap());
 
-  factory DisciplinaModel.fromJson(String source) =>
-      DisciplinaModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ClassHoursModel.fromJson(String source) => ClassHoursModel.fromMap(json.decode(source));
 }
+
+// {
+//     "id": 0,
+//     "horario": "18:30 ~ 19:19",
+//     "disciplina": "TCC II",
+//     "professor": "José Ernesto dos Santos Moraes",
+//     "turma": "01",
+//     "sala": "A1"
+// },

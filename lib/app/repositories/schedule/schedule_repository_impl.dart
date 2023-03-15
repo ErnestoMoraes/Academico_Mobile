@@ -1,22 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
 
-import 'package:academico_mobile/app/core/rest_client/custom_webview.dart';
+import 'package:academico_mobile/app/core/exceptions/repository_exceptions.dart';
+import 'package:academico_mobile/app/core/rest_client/custom_dio.dart';
+import 'package:academico_mobile/app/models/my_schedule/schedule_model.dart';
+import 'package:dio/dio.dart';
 
 import './schedule_repository.dart';
 
 class ScheduleRepositoryImpl implements ScheduleRepository {
-  final CustomWebview webview;
+  final CustomDio dio;
+
   ScheduleRepositoryImpl({
-    required this.webview,
+    required this.dio,
   });
 
   @override
-  Future<void> findSchedule() async {
-    // try {
-    //   var result = await webview
-    //       .unauth()
-    //       .loadRequest(Uri.parse(Env.instance['URL_SCHECULE'] ?? ''));
-    // } on Exception catch (e) {
-    //   throw RepositoryExceptions(e.toString());
-    // }
+  Future<ScheduleModel> findSchedule() async {
+    try {
+      final result = await dio.get('/horarios');
+      return ScheduleModel.fromJson(result.data);
+    } on DioError catch (e, s) {
+      log('Erro ao buscar horários', error: e, stackTrace: s);
+      throw RepositoryExceptions(message: 'Erro ao buscar horários');
+    }
   }
 }

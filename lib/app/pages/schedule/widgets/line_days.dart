@@ -20,7 +20,7 @@ class LineDays extends StatelessWidget {
     return ElevatedButton(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          nameDay == 'Dom' || nameDay == 'Sab'
+          nameDay == 'Sun' || nameDay == 'Sat'
               ? ColorsApp.instance.cardnoselected
               : isNow!
                   ? ColorsApp.instance.cardwhite
@@ -35,7 +35,7 @@ class LineDays extends StatelessWidget {
       onPressed: nameDay == 'Dom' || nameDay == 'Sab'
           ? null
           : () {
-              print('Clicou no dia $nameDay');
+              // print('Clicou no dia $nameDay');
             },
       child: SizedBox(
         height: context.percentHeight(.2),
