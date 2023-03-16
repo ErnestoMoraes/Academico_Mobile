@@ -1,3 +1,4 @@
+import 'package:academico_mobile/app/pages/schedule/schedule_controller.dart';
 import 'package:academico_mobile/app/pages/schedule/schedule_page.dart';
 import 'package:academico_mobile/app/repositories/schedule/schedule_repository.dart';
 import 'package:academico_mobile/app/repositories/schedule/schedule_repository_impl.dart';
@@ -12,7 +13,12 @@ class ScheduleRouter {
             create: (context) => ScheduleRepositoryImpl(
               dio: context.read(),
             ),
-          )
+          ),
+          Provider(
+            create: (context) => ScheduleController(
+              context.read(),
+            ),
+          ),
         ],
         child: const SchedulePage(),
       );

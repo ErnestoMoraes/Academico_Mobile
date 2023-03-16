@@ -43,12 +43,3 @@ class ClassHoursModel {
 
   factory ClassHoursModel.fromJson(String source) => ClassHoursModel.fromMap(json.decode(source));
 }
-
-// {
-//     "id": 0,
-//     "horario": "18:30 ~ 19:19",
-//     "disciplina": "TCC II",
-//     "professor": "José Ernesto dos Santos Moraes",
-//     "turma": "01",
-//     "sala": "A1"
-// },

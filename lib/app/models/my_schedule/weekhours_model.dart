@@ -6,27 +6,25 @@ class WeekHoursModel {
   final String dia;
   final List<ClassHoursModel> classHour;
 
-  WeekHoursModel({
-    required this.id,
-    required this.dia,
-    required this.classHour,
-  });
+  WeekHoursModel(
+      {required this.id, required this.dia, required this.classHour});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
       'dia': dia,
-      'classHour': classHour.map((x) => x.toMap()).toList(),
+      'horarios': classHour.map((x) => x.toMap()).toList(),
     };
   }
 
   factory WeekHoursModel.fromMap(Map<String, dynamic> map) {
     return WeekHoursModel(
-      id: map['id'] as int,
-      dia: map['dia'] as String,
+      id: map['id']?.toInt() ?? 0,
+      dia: map['dia'] ?? '',
       classHour: List<ClassHoursModel>.from(
-        map['classHour'].map<ClassHoursModel>(
-          (classHoursModel) => ClassHoursModel.fromMap(classHoursModel ?? {}),
+        map['horarios'].map<ClassHoursModel>(
+          (classHoursModel) =>
+              ClassHoursModel.fromMap(classHoursModel ?? <ClassHoursModel>{}),
         ),
       ),
     );

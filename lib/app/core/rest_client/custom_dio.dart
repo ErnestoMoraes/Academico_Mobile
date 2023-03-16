@@ -4,16 +4,18 @@ import 'package:dio/io.dart';
 
 class CustomDio extends DioForNative {
   CustomDio()
-      : super(BaseOptions(
-          baseUrl: Env.instance['URL_LOGIN'] ?? '',
-          connectTimeout: const Duration(milliseconds: 5000),
-          receiveTimeout: const Duration(milliseconds: 60000),
-        )) {
+      : super(
+          BaseOptions(
+            baseUrl: Env.instance['base_url'] ?? '',
+            connectTimeout: const Duration(milliseconds: 5000),
+            receiveTimeout: const Duration(milliseconds: 60000),
+          ),
+        ) {
     interceptors.add(LogInterceptor(
       requestBody: true,
       responseBody: true,
       requestHeader: true,
-      // responseHeader: true,
+      responseHeader: true,
     ));
   }
 
