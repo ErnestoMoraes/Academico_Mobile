@@ -11,3 +11,4 @@ Atividade 01:
  - [ ] RestClient - Dio
  
  senha: cddbdabqeujfjluo
+ lembrar do delay na requisição de 2s.

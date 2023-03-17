@@ -1,4 +1,4 @@
-import 'package:academico_mobile/app/core/ui/helpers/loader.dart';
+import 'package:academico_mobile/app/core/ui/base_state/base_state.dart';
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
 import 'package:academico_mobile/app/core/ui/widgets/my_card.dart';
@@ -6,7 +6,6 @@ import 'package:academico_mobile/app/pages/schedule/schedule_controller.dart';
 import 'package:academico_mobile/app/pages/schedule/schedule_state.dart';
 import 'package:academico_mobile/app/pages/schedule/widgets/line_days.dart';
 import 'package:flutter/material.dart';
-import 'package:academico_mobile/app/core/ui/helpers/messages.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SchedulePage extends StatefulWidget {
@@ -16,13 +15,10 @@ class SchedulePage extends StatefulWidget {
   State<SchedulePage> createState() => _SchedulePageState();
 }
 
-class _SchedulePageState extends State<SchedulePage> with Loader, Messages {
+class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<ScheduleController>().loadSchedule();
-    });
+  void onReady() {
+    controller.loadSchedule();
   }
 
   @override
@@ -94,10 +90,8 @@ class _SchedulePageState extends State<SchedulePage> with Loader, Messages {
                         isNow: false,
                         horario: state.schedule[0].horarios[0].horario,
                         sala: state.schedule[0].horarios[0].sala,
-                        disciplina:
-                            state.schedule[0].horarios[0].disciplina,
-                        professor:
-                            state.schedule[0].horarios[0].professor,
+                        disciplina: state.schedule[0].horarios[0].disciplina,
+                        professor: state.schedule[0].horarios[0].professor,
                       );
                     },
                   ),
