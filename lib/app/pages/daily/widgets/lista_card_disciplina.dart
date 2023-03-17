@@ -6,6 +6,7 @@ import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
 import 'package:academico_mobile/app/models/daily_model.dart';
 
+// ignore: must_be_immutable
 class ListaCardDisciplina extends StatelessWidget {
   DisciplinaModel disciplina;
 
@@ -18,7 +19,7 @@ class ListaCardDisciplina extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       splashColor: ColorsApp.instance.background,
-      onTap: () => print('Card tapped.'),
+      onTap: () {},
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(bottom: 15, left: 10, right: 10, top: 0),
