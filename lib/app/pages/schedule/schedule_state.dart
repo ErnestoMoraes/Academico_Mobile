@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:match/match.dart';
 
-import 'package:academico_mobile/app/models/my_schedule/schedule_model.dart';
+import 'package:academico_mobile/app/models/schedule_model.dart';
 
 part 'schedule_state.g.dart';
 

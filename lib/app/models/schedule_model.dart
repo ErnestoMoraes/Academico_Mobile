@@ -1,5 +1,3 @@
-
-
 class Horario {
   final int id;
   final String dia;

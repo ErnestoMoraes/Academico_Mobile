@@ -20,4 +20,5 @@ class ScheduleController extends Cubit<ScheduleState> {
       emit(state.copyWith(status: ScheduleStatus.error, errorMessage: 'Erro ao carregar o cronograma'));
     }
   }
+
 }

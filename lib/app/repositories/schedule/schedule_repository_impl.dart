@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:academico_mobile/app/core/exceptions/repository_exceptions.dart';
 import 'package:academico_mobile/app/core/rest_client/custom_dio.dart';
-import 'package:academico_mobile/app/models/my_schedule/schedule_model.dart';
+import 'package:academico_mobile/app/models/schedule_model.dart';
 import 'package:dio/dio.dart';
 
 import './schedule_repository.dart';

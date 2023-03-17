@@ -18,6 +18,7 @@ class AcademicoMobile extends StatelessWidget {
           '/': (context) => const SplashPage(),
           '/schedule': (context) => ScheduleRouter.page,
         },
+        
       ),
     );
   }
