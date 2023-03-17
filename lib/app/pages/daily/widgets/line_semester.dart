@@ -16,7 +16,7 @@ class LineSemester extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ButtonStyle(
+      style: ButtonStyle( 
         backgroundColor: MaterialStateProperty.all(
           nameDay == 'Dom' || nameDay == 'Sab'
               ? ColorsApp.instance.cardnoselected
