@@ -7,6 +7,7 @@ class MyAppbar extends AppBar {
     super.key,
     double elevation = 0,
     required String title,
+    String subtitle = '',
   }) : super(
           elevation: elevation,
           title: Text(title, style: TextStyles.instance.labelPage),

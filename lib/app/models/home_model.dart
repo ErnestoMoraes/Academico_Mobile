@@ -1,43 +1,22 @@
-class HomePage {
-  final int id;
-  final String name;
-  final List<Page> pages;
-
-  HomePage({
-    required this.id,
-    required this.name,
-    required this.pages,
-  });
-
-  factory HomePage.fromJson(Map<String, dynamic> json) {
-    final List<Page> pages = List.castFrom(json['pages'])
-        .map((pageJson) => Page.fromJson(pageJson))
-        .toList();
-
-    return HomePage(
-      id: json['id'],
-      name: json['name'],
-      pages: pages,
-    );
-  }
-}
-
-class Page {
+class HomePageModel {
   final int id;
   final String name;
   final String url;
+  final String image;
 
-  Page({
+  HomePageModel( {
     required this.id,
     required this.name,
     required this.url,
+    required this.image,
   });
 
-  factory Page.fromJson(Map<String, dynamic> json) {
-    return Page(
+  factory HomePageModel.fromJson(Map<String, dynamic> json) {
+    return HomePageModel(
       id: json['id'],
       name: json['name'],
       url: json['url'],
+      image: json['image'],
     );
   }
 }

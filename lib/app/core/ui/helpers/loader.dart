@@ -9,7 +9,6 @@ mixin Loader<T extends StatefulWidget> on State<T> {
       isOpen = true;
       showDialog(
         context: context,
-        // barrierDismissible: false,
         builder: (context) => Center(
           child: LoadingAnimationWidget.staggeredDotsWave(
             color: Colors.white,
