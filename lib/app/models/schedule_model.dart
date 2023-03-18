@@ -1,36 +1,53 @@
-import 'package:academico_mobile/app/models/week_model.dart';
+class Horario {
+  final int id;
+  final String dia;
+  final List<HorarioDetalhado> horarios;
 
-class ScheduleModel {
-  final String matricula;
-  final String nome;
-  final String semestreAtual;
-  final WeekModel semana;
-
-  ScheduleModel({
-    required this.matricula,
-    required this.nome,
-    required this.semestreAtual,
-    required this.semana,
+  Horario({
+    required this.id,
+    required this.dia,
+    required this.horarios,
   });
 
+  factory Horario.fromJson(Map<String, dynamic> json) {
+    final horariosList = json['horarios'] as List<dynamic>;
+    final horarios = horariosList
+        .map((horarioJson) => HorarioDetalhado.fromJson(horarioJson))
+        .toList();
+
+    return Horario(
+      id: json['id']?.toInt() ?? 0,
+      dia: json['dia'] ?? '',
+      horarios: horarios,
+    );
+  }
 }
 
-///matricula: 2020100000000
-///nome de usuario: José Ernesto dos Santos Moraes
-///semestre: 2022.2
-///
-///  var  semana = {
-//   '5'  = {
-//     {
-//       horario: {
-//         disciplina: {
-//           nome: "Programação para Dispositivos Móveis";
-//           professor:"José Ernesto dos Santos Moraes";
-//           sala: "Sala 1";
-//           semestre: 8;
-//         }
-//       }
-//     }
-//   }
-// };
-///
+class HorarioDetalhado {
+  final int id;
+  final String horario;
+  final String disciplina;
+  final String professor;
+  final String turma;
+  final String sala;
+
+  HorarioDetalhado({
+    required this.id,
+    required this.horario,
+    required this.disciplina,
+    required this.professor,
+    required this.turma,
+    required this.sala,
+  });
+
+  factory HorarioDetalhado.fromJson(Map<String, dynamic> json) {
+    return HorarioDetalhado(
+      id: json['id']?.toInt() ?? 0,
+      horario: json['horario'] ?? '',
+      disciplina: json['disciplina'] ?? '',
+      professor: json['professor'] ?? '',
+      turma: json['turma'] ?? '',
+      sala: json['sala'] ?? '',
+    );
+  }
+}

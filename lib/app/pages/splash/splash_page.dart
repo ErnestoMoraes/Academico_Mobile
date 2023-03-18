@@ -16,7 +16,7 @@ class SplashPage extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/images/logos/logo_ifce.png',
-                  height: context.percentHeight(.5),
+                  height: context.percentHeight(.25),
                   fit: BoxFit.cover,
                 ),
                 SizedBox(
@@ -24,9 +24,9 @@ class SplashPage extends StatelessWidget {
                 ),
                 MyInputButton(
                   width: context.percentWidth(.6),
-                  height: context.percentHeight(.13),
+                  height: context.percentHeight(.07),
                   label: 'Acessar',
-                  onPressed: () => Navigator.of(context).pushNamed('/login'),
+                  onPressed: () => Navigator.of(context).popAndPushNamed('/home'),
                 ),
               ],
             ),
