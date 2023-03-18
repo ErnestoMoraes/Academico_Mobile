@@ -4,6 +4,7 @@ import 'package:academico_mobile/app/models/schedule_model.dart';
 import 'package:flutter/material.dart';
 import '../../../core/ui/styles/text_styles.dart';
 
+// ignore: must_be_immutable
 class LineDays extends StatefulWidget {
   final Horario day;
   final VoidCallback onPressed;
