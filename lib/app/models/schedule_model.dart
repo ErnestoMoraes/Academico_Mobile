@@ -26,7 +26,7 @@ class Horario {
 class HorarioDetalhado {
   final int id;
   final String horario;
-  final String disciplina;
+  late final String disciplina;
   final String professor;
   final String turma;
   final String sala;

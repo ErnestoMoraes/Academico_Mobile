@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:academico_mobile/app/pages/dashbord_daily/dashboard_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
@@ -19,7 +20,13 @@ class ListaCardDisciplina extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       splashColor: ColorsApp.instance.background,
-      onTap: () {},
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => DashboardPage(
+            disciplina: disciplina,
+          ),
+        ),
+      ),
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(bottom: 15, left: 10, right: 10, top: 0),

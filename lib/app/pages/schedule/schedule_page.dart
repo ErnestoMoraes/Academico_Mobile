@@ -1,6 +1,5 @@
 import 'package:academico_mobile/app/core/ui/base_state/base_state.dart';
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
-import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
 import 'package:academico_mobile/app/pages/schedule/widgets/my_card.dart';
 import 'package:academico_mobile/app/models/schedule_model.dart';
@@ -24,7 +23,6 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
   }
 
   List<HorarioDetalhado> list = [];
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +70,13 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: LineDays(
-                            day: state.schedule[index],
-                            onPressed: () => setState(() {
-                                  list = state.schedule[index].horarios;
-                                })),
+                          day: state.schedule[index],
+                          onPressed: () => setState(
+                            () {
+                              list = state.schedule[index].horarios;
+                            },
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -88,41 +89,14 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                 ),
                 SizedBox(height: context.percentWidth(0.05)),
                 Expanded(
-                  child: list.isEmpty
-                      ? Center(
-                          child: Text(
-                            'Selecione um dia da semana...',
-                            style: TextStyles.instance.textButtonLabel.copyWith(
-                                color: ColorsApp.instance.cardwhite,
-                                fontSize: 18),
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: list.length,
-                          itemBuilder: (context, index) {
-                            if (list.isEmpty) {
-                              return Center(
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  color: Colors.amber,
-                                  child: Text(
-                                    'Nenhuma aula marcada para esse dia',
-                                    style: TextStyles.instance.textButtonLabel,
-                                  ),
-                                ),
-                              );
-                            } else {
-                              return MyCard(
-                                isNow: false,
-                                horario: list[0].horario,
-                                sala: list[0].sala,
-                                disciplina: list[0].disciplina,
-                                professor: list[0].professor,
-                              );
-                            }
-                          },
-                        ),
+                  child: ListView.builder(
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return MyCard(
+                        horarioDetalhado: list[index],
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
@@ -132,3 +106,16 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
     );
   }
 }
+
+// return Center(
+//                           child: Container(
+//                             height: 50,
+//                             width: 50,
+//                             color: Colors.amber,
+//                             child: Text(
+//                               'Nenhuma aula marcada para esse dia',
+//                               style: TextStyles.instance.textExtraBold.copyWith(
+//                                 color: ColorsApp.instance.cardwhite),
+//                             ),
+//                           ),
+//                         );
