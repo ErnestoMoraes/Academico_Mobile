@@ -1,6 +1,7 @@
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
+import 'package:academico_mobile/app/core/ui/widgets/my_appbar.dart';
 import 'package:academico_mobile/app/models/daily_model.dart';
 import 'package:academico_mobile/app/pages/dashbord_daily/widgets/card_aulas_futuras.dart';
 import 'package:academico_mobile/app/pages/dashbord_daily/widgets/card_horario.dart';
@@ -23,9 +24,9 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.disciplina.nome),
-      ),
+      appBar: MyAppbar(
+          title: widget.disciplina.nome,
+          onPressed: () => Navigator.pop(context)),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.percentWidth(0.045)),
         child: SingleChildScrollView(
