@@ -1,6 +1,8 @@
 import 'package:academico_mobile/app/core/ui/base_state/base_state.dart';
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
+import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
+import 'package:academico_mobile/app/core/ui/widgets/my_appbar.dart';
 import 'package:academico_mobile/app/pages/schedule/widgets/my_card.dart';
 import 'package:academico_mobile/app/models/schedule_model.dart';
 import 'package:academico_mobile/app/pages/schedule/schedule_controller.dart';
@@ -27,10 +29,9 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:
-            Text('Cronograma de Aulas', style: TextStyles.instance.labelPage),
-        automaticallyImplyLeading: false,
+      appBar: MyAppbar(
+        title: 'Cronograma de Aulas',
+        onPressed: () => Navigator.pop(context),
       ),
       body: BlocConsumer<ScheduleController, ScheduleState>(
         listener: (context, state) {
@@ -67,16 +68,18 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                     scrollDirection: Axis.horizontal,
                     itemCount: state.schedule.length,
                     itemBuilder: (context, index) {
+                      list = state.schedule[state.selectedDay!].horarios;
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: LineDays(
-                          day: state.schedule[index],
-                          onPressed: () => setState(
-                            () {
+                            day: state.schedule[index],
+                            color: state.selectedDay == index
+                                ? ColorsApp.instance.cardwhite
+                                : ColorsApp.instance.cardnoselected,
+                            onPressed: () async {
+                              await controller.selectedDay(index);
                               list = state.schedule[index].horarios;
-                            },
-                          ),
-                        ),
+                            }),
                       );
                     },
                   ),
@@ -88,15 +91,31 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                   ],
                 ),
                 SizedBox(height: context.percentWidth(0.05)),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      return MyCard(
-                        horarioDetalhado: list[index],
+                BlocBuilder<ScheduleController, ScheduleState>(
+                  builder: (context, state) {
+                    if (list.isEmpty) {
+                      return Expanded(
+                        child: Center(
+                          child: Text(
+                            'Nenhuma aula marcada para esse dia',
+                            style: TextStyles.instance.textExtraBold
+                                .copyWith(color: ColorsApp.instance.cardwhite),
+                          ),
+                        ),
                       );
-                    },
-                  ),
+                    } else {
+                      return Expanded(
+                        child: ListView.builder(
+                          itemCount: list.length,
+                          itemBuilder: (context, index) {
+                            return MyCard(
+                              horarioDetalhado: list[index],
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  },
                 ),
               ],
             ),

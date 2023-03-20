@@ -24,7 +24,10 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(title: 'Academico Mobile'),
+      appBar: MyAppbar.home(
+        title: 'Academico Mobile',
+        
+      ),
       body: BlocConsumer<HomeController, HomeState>(
         listener: (context, state) {
           state.status.matchAny(

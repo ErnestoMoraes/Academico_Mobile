@@ -2,10 +2,10 @@ import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
 import 'package:academico_mobile/app/models/daily_model.dart';
-import 'package:academico_mobile/app/pages/dashbord_daily/wisgets/card_aulas_futuras.dart';
-import 'package:academico_mobile/app/pages/dashbord_daily/wisgets/card_horario.dart';
-import 'package:academico_mobile/app/pages/dashbord_daily/wisgets/line_dashboard.dart';
-import 'package:academico_mobile/app/pages/dashbord_daily/wisgets/line_notas.dart';
+import 'package:academico_mobile/app/pages/dashbord_daily/widgets/card_aulas_futuras.dart';
+import 'package:academico_mobile/app/pages/dashbord_daily/widgets/card_horario.dart';
+import 'package:academico_mobile/app/pages/dashbord_daily/widgets/line_dashboard.dart';
+import 'package:academico_mobile/app/pages/dashbord_daily/widgets/line_notas.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {

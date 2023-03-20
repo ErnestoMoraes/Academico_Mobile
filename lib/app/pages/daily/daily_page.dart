@@ -25,7 +25,7 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(title: 'Meus Diários'),
+      appBar: MyAppbar(title: 'Meus Diários', onPressed: () => Navigator.pop(context),),
       body: BlocConsumer<DailyController, DailyState>(
         listener: (context, state) {
           state.status.matchAny(
