@@ -1,22 +1,15 @@
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
+import 'package:academico_mobile/app/models/schedule_model.dart';
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
-  final bool? isNow;
-  final String horario;
-  final String sala;
-  final String disciplina;
-  final String professor;
+  final HorarioDetalhado horarioDetalhado;
 
   const MyCard({
     super.key,
-    required this.horario,
-    required this.sala,
-    required this.disciplina,
-    required this.professor,
-    this.isNow = false,
+    required this.horarioDetalhado,
   });
 
   @override
@@ -25,9 +18,7 @@ class MyCard extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.only(bottom: 15, top: 0),
       decoration: BoxDecoration(
-        color: isNow!
-            ? ColorsApp.instance.cardwhite
-            : ColorsApp.instance.cardnoselected,
+        color: ColorsApp.instance.cardnoselected,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Column(
@@ -36,19 +27,15 @@ class MyCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                horario,
+                horarioDetalhado.horario,
                 style: TextStyles.instance.texLabelH4.copyWith(
-                    color: isNow!
-                        ? ColorsApp.instance.background
-                        : ColorsApp.instance.cardwhite,
+                    color: ColorsApp.instance.cardwhite,
                     fontWeight: TextStyles.instance.textExtraBold.fontWeight),
               ),
               Text(
-                sala,
+                horarioDetalhado.sala,
                 style: TextStyles.instance.texLabelH4.copyWith(
-                    color: isNow!
-                        ? ColorsApp.instance.background
-                        : ColorsApp.instance.cardwhite,
+                    color: ColorsApp.instance.cardwhite,
                     fontWeight: TextStyles.instance.textExtraBold.fontWeight),
               ),
             ],
@@ -59,11 +46,9 @@ class MyCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  disciplina,
+                  horarioDetalhado.disciplina,
                   style: TextStyles.instance.texLabelH4.copyWith(
-                      color: isNow!
-                          ? ColorsApp.instance.background
-                          : ColorsApp.instance.cardwhite,
+                      color: ColorsApp.instance.cardwhite,
                       fontWeight: TextStyles.instance.textSemiBold.fontWeight),
                 ),
               ),
@@ -75,11 +60,9 @@ class MyCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  professor,
+                  horarioDetalhado.professor,
                   style: TextStyles.instance.texLabelH5.copyWith(
-                      color: isNow!
-                          ? ColorsApp.instance.background
-                          : ColorsApp.instance.cardwhite,
+                      color: ColorsApp.instance.cardwhite,
                       fontWeight: TextStyles.instance.textSemiBold.fontWeight),
                 ),
               ),

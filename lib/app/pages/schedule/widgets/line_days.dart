@@ -24,7 +24,7 @@ class LineDays extends StatefulWidget {
 class _LineDaysState extends State<LineDays> {
   Color colors() {
     if (widget.day.dia.contains('Sun') || widget.day.dia.contains('Sat')) {
-      return ColorsApp.instance.cardnoselected;
+      return ColorsApp.instance.background;
     } else {
       return widget.color!;
     }
@@ -45,10 +45,7 @@ class _LineDaysState extends State<LineDays> {
           widget.day.dia.contains('Sun') || widget.day.dia.contains('Sat')
               ? null
               : () {
-                  setState(() {
-                    widget.color = ColorsApp.instance.cardwhite;
-                    widget.onPressed();
-                  });
+                  widget.onPressed();
                 },
       child: SizedBox(
         height: context.percentHeight(.2),

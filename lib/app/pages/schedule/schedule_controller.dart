@@ -21,4 +21,10 @@ class ScheduleController extends Cubit<ScheduleState> {
     }
   }
 
+  Future<void> selectedDay(int day) async {
+    emit(state.copyWith(status: ScheduleStatus.loading));
+    await Future.delayed(const Duration(seconds: 1));
+    emit(state.copyWith(status: ScheduleStatus.loaded, selectedDay: day));
+  }
+
 }

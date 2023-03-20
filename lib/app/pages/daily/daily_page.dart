@@ -16,7 +16,6 @@ class DailyPage extends StatefulWidget {
 }
 
 class _DailyPageState extends BaseState<DailyPage, DailyController> {
-  
   @override
   void onReady() {
     super.onReady();
@@ -26,7 +25,7 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(title: 'Meus Diários'),
+      appBar: MyAppbar(title: 'Meus Diários', onPressed: () => Navigator.pop(context),),
       body: BlocConsumer<DailyController, DailyState>(
         listener: (context, state) {
           state.status.matchAny(
@@ -55,7 +54,9 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
                 itemCount: state.semestres.length,
                 itemBuilder: (context, index) {
                   final semestre = state.semestres[index].disciplinas;
-                  return ListaCardDisciplina(disciplina: semestre[0]);
+                  return ListaCardDisciplina(
+                    disciplina: semestre[0],
+                  );
                 },
               ))
             ],

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:academico_mobile/app/pages/dashbord_daily/dashboard_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
@@ -19,7 +20,13 @@ class ListaCardDisciplina extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       splashColor: ColorsApp.instance.background,
-      onTap: () {},
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => DashboardPage(
+            disciplina: disciplina,
+          ),
+        ),
+      ),
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(bottom: 15, left: 10, right: 10, top: 0),
@@ -39,19 +46,22 @@ class ListaCardDisciplina extends StatelessWidget {
                       Text(
                         disciplina.id.toString(),
                         style: TextStyles.instance.texLabelH5.copyWith(
-                            color: ColorsApp.instance.labelblack1,
-                            fontWeight:
-                                TextStyles.instance.textExtraBold.fontWeight),
+                          color: ColorsApp.instance.labelblack1,
+                          fontSize: 14,
+                          fontWeight:
+                              TextStyles.instance.textExtraBold.fontWeight,
+                        ),
                       ),
-                      SizedBox(height: context.screenHeight * 0.01),
+                      SizedBox(height: context.screenHeight * 0.005),
                       Text(
                         disciplina.nome,
-                        style: TextStyles.instance.texLabelH4.copyWith(
+                         style: TextStyles.instance.texLabelH4.copyWith(
                             color: ColorsApp.instance.labelblack1,
+                            fontSize: 17,
                             fontWeight:
                                 TextStyles.instance.textSemiBold.fontWeight),
                       ),
-                      SizedBox(height: context.screenHeight * 0.005),
+                      SizedBox(height: context.screenHeight * 0.002),
                       Text(
                         disciplina.professor,
                         style: TextStyles.instance.texLabelH5.copyWith(
@@ -65,7 +75,7 @@ class ListaCardDisciplina extends StatelessWidget {
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: ColorsApp.instance.labelblack1,
-                  size: 25,
+                  size: context.screenHeight * 0.04,
                 ),
               ],
             ),
