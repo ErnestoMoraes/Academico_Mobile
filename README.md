@@ -10,5 +10,5 @@ Atividade 01:
  - [ ] Dotenv
  - [ ] RestClient - Dio
  
- senha: cddbdabqeujfjluo
- lembrar do delay na requisição de 2s.
+ - [ ] senha: cddbdabqeujfjluo
+ - [ ] lembrar do delay na requisição de 2s.
