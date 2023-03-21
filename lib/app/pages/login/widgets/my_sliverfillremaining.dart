@@ -15,7 +15,8 @@ class MySliverfillremaining extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(bottom: context.percentHeight(.05)),
           child: TextButton(
-            onPressed: () {},
+            onPressed: () =>
+                Navigator.of(context).pushNamed('/recover-password'),
             child: Text(
               'Esqueceu sua senha? Recuperar senha.',
               style: TextStyles.instance.texLabelH4.copyWith(

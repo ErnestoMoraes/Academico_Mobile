@@ -1,9 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:academico_mobile/app/models/home_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:match/match.dart';
-
-import 'package:academico_mobile/app/models/home_model.dart';
-
 part 'home_state.g.dart';
 
 @match
@@ -18,17 +15,20 @@ class HomeState extends Equatable {
   final HomeStateStatus status;
   final List<HomePageModel> homePage;
   final String? errorMessage;
+  final bool isOn;
 
   const HomeState({
     required this.status,
     required this.homePage,
     this.errorMessage,
+    required this.isOn,
   });
 
   const HomeState.initial()
       : status = HomeStateStatus.initial,
         homePage = const [],
-        errorMessage = null;
+        errorMessage = null,
+        isOn = false;
 
   @override
   List<Object?> get props => [status, homePage, errorMessage];
@@ -37,11 +37,13 @@ class HomeState extends Equatable {
     HomeStateStatus? status,
     List<HomePageModel>? homePage,
     String? errorMessage,
+    bool? isOn,
   }) {
     return HomeState(
       status: status ?? this.status,
       homePage: homePage ?? this.homePage,
       errorMessage: errorMessage ?? this.errorMessage,
+      isOn: isOn ?? this.isOn,
     );
   }
 }

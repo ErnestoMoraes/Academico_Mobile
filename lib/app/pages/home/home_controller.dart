@@ -14,11 +14,13 @@ class HomeController extends Cubit<HomeState> {
     try {
       await Future.delayed(const Duration(seconds: 2));
       final homePage = await _homeRepository.getHomePage();
-      emit(state.copyWith(status: HomeStateStatus.loaded, homePage: homePage));
+      emit(state.copyWith(
+          status: HomeStateStatus.loaded, homePage: homePage, isOn: true));
     } catch (e, s) {
       log('Error ao carregar home page', error: e, stackTrace: s);
       emit(state.copyWith(
           status: HomeStateStatus.error,
+          isOn: false,
           errorMessage: 'Error ao carregar home page'));
     }
   }

@@ -1,10 +1,14 @@
 import 'package:academico_mobile/app/core/ui/base_state/base_state.dart';
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
+import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
+import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
 import 'package:academico_mobile/app/core/ui/widgets/label_subtitle.dart';
 import 'package:academico_mobile/app/core/ui/widgets/my_appbar.dart';
+import 'package:academico_mobile/app/models/daily_model.dart';
 import 'package:academico_mobile/app/pages/daily/daily_controller.dart';
 import 'package:academico_mobile/app/pages/daily/daily_state.dart';
 import 'package:academico_mobile/app/pages/daily/widgets/lista_card_disciplina.dart';
+import 'package:academico_mobile/app/pages/daily/widgets/my_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,12 +24,18 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
   void onReady() {
     super.onReady();
     controller.loadSemestre();
+    list = controller.state.semestres[0].disciplinas;
   }
+
+  List<DisciplinaModel> list = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(title: 'Meus Diários', onPressed: () => Navigator.pop(context),),
+      appBar: MyAppbar(
+        title: 'Meus Diários',
+        onPressed: () => Navigator.pop(context),
+      ),
       body: BlocConsumer<DailyController, DailyState>(
         listener: (context, state) {
           state.status.matchAny(
@@ -45,20 +55,69 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
         builder: (context, state) {
           return Column(
             children: [
+              SizedBox(height: context.percentHeight(0.01)),
+              const MySwitch(),
+              SizedBox(height: context.percentHeight(0.01)),
+              Visibility(
+                visible: !state.isNow,
+                child: SizedBox(
+                  height: context.percentHeight(0.07),
+                  width: double.infinity,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.semestres.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        margin: EdgeInsets.all(context.percentHeight(.01)),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: context.percentWidth(0.02)),
+                        decoration: BoxDecoration(
+                          color: state.selected == index
+                              ? ColorsApp.instance.cardwhite
+                              : ColorsApp.instance.cardnoselected,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: TextButton(
+                          onPressed: () => controller.selectedDay(index),
+                          child: Text(
+                            state.semestres[index].semestre,
+                            style: TextStyles.instance.texLabelH2.copyWith(
+                              color: state.selected == index
+                                  ? ColorsApp.instance.background
+                                  : ColorsApp.instance.labelblack4,
+                              fontSize: context.percentHeight(0.017),
+                              fontWeight:
+                                  TextStyles.instance.textSemiBold.fontWeight,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(height: context.percentHeight(0.01)),
               Padding(
                 padding: EdgeInsets.only(left: context.percentWidth(0.03)),
                 child: const LabelSubtitle(title: 'Disciplinas'),
               ),
-              Expanded(
-                  child: ListView.builder(
-                itemCount: state.semestres.length,
-                itemBuilder: (context, index) {
-                  final semestre = state.semestres[index].disciplinas;
-                  return ListaCardDisciplina(
-                    disciplina: semestre[0],
-                  );
+              BlocListener<DailyController, DailyState>(
+                listener: (context, state) {
+                  list = state.semestres[state.selected].disciplinas;
                 },
-              ))
+                child: Expanded(
+                  child: ListView.builder(
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return ListaCardDisciplina(
+                        disciplina: list[index],
+                      );
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(height: context.percentHeight(0.02))
             ],
           );
         },
@@ -66,31 +125,3 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
     );
   }
 }
-
-
-// const Switcher(),
-//           const SizedBox(height: 10),
-//           Container(
-//             padding: const EdgeInsets.all(10),
-//             margin: const EdgeInsets.symmetric(horizontal: 10),
-//             decoration: BoxDecoration(
-//               color: ColorsApp.instance.labelblack2,
-//               borderRadius: BorderRadius.circular(5),
-//             ),
-//             child: SizedBox(
-//               height: 50,
-//               child: ListView.builder(
-//                 scrollDirection: Axis.horizontal,
-//                 itemCount: nomeOpcoes.length,
-//                 itemBuilder: (context, index) {
-//                   return Padding(
-//                     padding: const EdgeInsets.only(right: 10),
-//                     child: LineSemester(
-//                       nameDay: nomeOpcoes[index],
-//                       isNow: index == 2 ? true : false,
-//                     ),
-//                   );
-//                 },
-//               ),
-//             ),
-//           ),

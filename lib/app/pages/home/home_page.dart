@@ -26,7 +26,6 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
     return Scaffold(
       appBar: MyAppbar.home(
         title: 'Academico Mobile',
-        
       ),
       body: BlocConsumer<HomeController, HomeState>(
         listener: (context, state) {

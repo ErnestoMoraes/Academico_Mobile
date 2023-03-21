@@ -7,11 +7,10 @@ import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
 import 'package:academico_mobile/app/models/daily_model.dart';
 
-// ignore: must_be_immutable
 class ListaCardDisciplina extends StatelessWidget {
-  DisciplinaModel disciplina;
+  final DisciplinaModel disciplina;
 
-  ListaCardDisciplina({
+  const ListaCardDisciplina({
     Key? key,
     required this.disciplina,
   }) : super(key: key);

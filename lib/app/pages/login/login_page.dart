@@ -44,21 +44,21 @@ class _LoginPageState extends State<LoginPage> {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(context.screenWidth * .03),
               child: Form(
                 key: formKey,
                 child: Column(
                   children: [
                     SizedBox(
-                      height: context.percentHeight(.25),
+                      height: context.percentHeight(.15),
                     ),
                     Image.asset(
                       'assets/images/logos/logo_ifce.png',
-                      height: context.percentHeight(.4),
+                      height: context.percentHeight(.2),
                       fit: BoxFit.cover,
                     ),
                     SizedBox(
-                      height: context.percentHeight(.1),
+                      height: context.percentHeight(.05),
                     ),
                     TextFormField(
                       controller: matriculaEC,
@@ -110,28 +110,21 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Expanded(
                             child: MyInputButton(
-                              height: context.percentHeight(.15),
+                              height: context.screenHeight * .07,
                               label: 'Acessar',
                               onPressed: () {
                                 print('${matriculaEC.text}');
                                 print('${senhaEC.text}');
-                                controller
-                                  ..runJavaScript(
-                                      "javascript:document.getElementById('txtLogin').value = '${matriculaEC.text}'")
-                                  ..runJavaScript(
-                                      "javascript:document.getElementById('txtSenha').value = '${senhaEC.text}'")
-                                  ..runJavaScript(
-                                      "javascript:document.forms['frmLogin'].submit()");
-                                print('foi');
-                                Navigator.of(context).pushNamed('/teste');
+                                Navigator.of(context)
+                                    .pushReplacementNamed('/home');
                               },
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: context.screenHeight * .07,
                     ),
                   ],
                 ),
@@ -144,3 +137,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
+// controller
+//   ..runJavaScript(
+//       "javascript:document.getElementById('txtLogin').value = '${matriculaEC.text}'")
+//   ..runJavaScript(
+//       "javascript:document.getElementById('txtSenha').value = '${senhaEC.text}'")
+//   ..runJavaScript(
+//       "javascript:document.forms['frmLogin'].submit()");
+// print('foi');
