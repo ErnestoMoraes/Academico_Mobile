@@ -17,16 +17,27 @@ class DailyController extends Cubit<DailyState> {
     try {
       await Future.delayed(const Duration(seconds: 2));
       final semestres = await _dailyRepository.findDaily();
-      emit(state.copyWith(
-        status: DailyStateSatus.loaded,
-        semestres: semestres,
-      ));
+      emit(
+          state.copyWith(status: DailyStateSatus.loaded, semestres: semestres));
     } catch (e, s) {
       log('Erro ao buscar semestres', error: e, stackTrace: s);
       emit(state.copyWith(
-        status: DailyStateSatus.error,
-        errorMessage: 'Erro ao buscar semestres',
-      ));
+          status: DailyStateSatus.error,
+          errorMessage: 'Erro ao buscar semestres'));
     }
+  }
+
+  void changeIsNow() async {
+    emit(state.copyWith(status: DailyStateSatus.loading));
+    await Future.delayed(
+      const Duration(seconds: 2),
+    );
+    emit(state.copyWith(status: DailyStateSatus.loaded, isNow: !state.isNow));
+  }
+
+  Future<void> selectedDay(int index) async {
+    emit(state.copyWith(status: DailyStateSatus.loading));
+    await Future.delayed(const Duration(seconds: 1));
+    emit(state.copyWith(status: DailyStateSatus.loaded, selected: index));
   }
 }
