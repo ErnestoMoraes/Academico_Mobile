@@ -63,16 +63,25 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                 ),
                 SizedBox(height: context.percentWidth(0.05)),
                 SizedBox(
-                  height: 80,
+                  height: 90,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: state.schedule.length,
                     itemBuilder: (context, index) {
+                      final now = DateTime.now();
+                      final startOfWeek =
+                          now.subtract(Duration(days: now.weekday));
+                      final List<DateTime> daysOfWeek = [];
+                      for (int i = 0; i < 7; i++) {
+                        daysOfWeek.add(startOfWeek.add(Duration(days: i)));
+                      }
+
                       list = state.schedule[state.selectedDay!].horarios;
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: LineDays(
                             day: state.schedule[index],
+                            hoje: daysOfWeek[index].day,
                             color: state.selectedDay == index
                                 ? ColorsApp.instance.cardwhite
                                 : ColorsApp.instance.cardnoselected,
