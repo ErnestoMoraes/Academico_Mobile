@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
+
 import 'package:bloc/bloc.dart';
 import 'package:academico_mobile/app/pages/daily/daily_state.dart';
 import 'package:academico_mobile/app/repositories/daily/daily_repository.dart';
@@ -21,9 +22,13 @@ class DailyController extends Cubit<DailyState> {
           state.copyWith(status: DailyStateSatus.loaded, semestres: semestres));
     } catch (e, s) {
       log('Erro ao buscar semestres', error: e, stackTrace: s);
-      emit(state.copyWith(
+      
+      emit(
+        state.copyWith(
           status: DailyStateSatus.error,
-          errorMessage: 'Erro ao buscar semestres'));
+          errorMessage: 'Erro ao buscar semestres',
+        ),
+      );
     }
   }
 

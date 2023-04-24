@@ -22,6 +22,7 @@ class DailyState extends Equatable {
   final String? errorMessage;
   final bool isNow;
   final int selected;
+  
 
   const DailyState({
     required this.status,
