@@ -30,7 +30,7 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(
+      appBar: MyAppbar.normal(
         title: 'Meus Diários',
         onPressed: () => Navigator.pop(context),
       ),

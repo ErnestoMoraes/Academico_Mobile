@@ -64,6 +64,7 @@ class _LineDaysState extends State<LineDays> {
             Text(
               widget.hoje.toString(),
               style: TextStyles.instance.texLabelH4.copyWith(
+                fontSize: context.screenHeight * 0.025,
                 color: ColorsApp.instance.labelblack4,
                 fontWeight: TextStyles.instance.textExtraBold.fontWeight,
               ),

@@ -29,7 +29,7 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(
+      appBar: MyAppbar.normal(
         title: 'Cronograma de Aulas',
         onPressed: () => Navigator.pop(context),
       ),

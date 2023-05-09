@@ -140,23 +140,28 @@ class _DashboardPageState extends State<DashboardPage> {
               LineNotas(
                   label: 'N1',
                   value: widget.disciplina.avaliacoes[0].toString() == ''
-                      ? '0'
+                      ? ' '
                       : widget.disciplina.avaliacoes[0].toString()),
               LineNotas(
                   label: 'N2',
                   value: widget.disciplina.avaliacoes[1].toString() == ''
-                      ? '0'
+                      ? ' '
                       : widget.disciplina.avaliacoes[1].toString()),
               LineNotas(
-                  label: 'Media Parcial',
+                  label: 'Média Parcial',
                   value: widget.disciplina.avaliacoes[2].toString() == ''
-                      ? '0'
+                      ? ' '
                       : widget.disciplina.avaliacoes[2].toString()),
               LineNotas(
                   label: 'Prova Final',
                   value: widget.disciplina.avaliacoes[3].toString() == ''
-                      ? '0'
+                      ? ' '
                       : widget.disciplina.avaliacoes[3].toString()),
+              LineNotas(
+                  label: 'Média Final',
+                  value: widget.disciplina.avaliacoes[4].toString() == ''
+                      ? ' '
+                      : widget.disciplina.avaliacoes[4].toString()),
             ],
           ),
         ),

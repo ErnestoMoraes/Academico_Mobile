@@ -19,13 +19,16 @@ class ListaCardDisciplina extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       splashColor: ColorsApp.instance.background,
-      onTap: () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => DashboardPage(
-            disciplina: disciplina,
+      onTap: () {
+        print('Disciplina: ${disciplina.nome}');
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => DashboardPage(
+              disciplina: disciplina,
+            ),
           ),
-        ),
-      ),
+        );
+      },
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(bottom: 15, left: 10, right: 10, top: 0),
@@ -42,25 +45,31 @@ class ListaCardDisciplina extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        disciplina.id.trim(),
-                        style: TextStyles.instance.texLabelH5.copyWith(
-                          color: ColorsApp.instance.labelblack1,
-                          fontSize: 14,
-                          fontWeight:
-                              TextStyles.instance.textExtraBold.fontWeight,
+                      Container(
+                        padding: EdgeInsets.all(context.screenHeight * 0.005),
+                        decoration: BoxDecoration(
+                          color: ColorsApp.instance.cardblue,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Text(
+                          disciplina.id.trim(),
+                          style: TextStyles.instance.texLabelH4.copyWith(
+                            color: ColorsApp.instance.cardwhite,
+                            fontWeight: TextStyles.instance.textBold.fontWeight,
+                            fontSize: context.screenHeight * 0.017,
+                          ),
                         ),
                       ),
-                      SizedBox(height: context.screenHeight * 0.005),
+                      SizedBox(height: context.screenHeight * 0.007),
                       Text(
                         disciplina.nome.trim(),
                         style: TextStyles.instance.texLabelH4.copyWith(
                             color: ColorsApp.instance.labelblack1,
                             fontSize: 15,
                             fontWeight:
-                                TextStyles.instance.textSemiBold.fontWeight),
+                                TextStyles.instance.textBold.fontWeight),
                       ),
-                      SizedBox(height: context.screenHeight * 0.005),
+                      SizedBox(height: context.screenHeight * 0.007),
                       Text(
                         disciplina.professor.trim(),
                         style: TextStyles.instance.texLabelH5.copyWith(
