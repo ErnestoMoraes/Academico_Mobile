@@ -6,13 +6,11 @@ import 'package:flutter/material.dart';
 class CardFaltasFuturas extends StatelessWidget {
   final String label;
   final String value;
-  final String percent;
 
   const CardFaltasFuturas({
     super.key,
     required this.label,
     required this.value,
-    required this.percent,
   });
 
   @override
@@ -37,16 +35,6 @@ class CardFaltasFuturas extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Text(
               value,
-              style: TextStyles.instance.texLabelH3.copyWith(
-                color: ColorsApp.instance.cardwhite,
-                fontWeight: TextStyles.instance.textSemiBold.fontWeight,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Text(
-              percent,
               style: TextStyles.instance.texLabelH3.copyWith(
                 color: ColorsApp.instance.cardwhite,
                 fontWeight: TextStyles.instance.textSemiBold.fontWeight,

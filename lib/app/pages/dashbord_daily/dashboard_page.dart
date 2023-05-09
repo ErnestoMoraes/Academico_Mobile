@@ -68,18 +68,17 @@ class _DashboardPageState extends State<DashboardPage> {
                 label: 'Carga Horária Total',
                 value: '${widget.disciplina.resumo.cargaHoraria}H',
               ),
-              Row(
-                children: [
-                  Text(
-                    'Existem 6 aulas planejadas a mais que as necessárias.',
-                    style: TextStyles.instance.texLabelH5.copyWith(
-                      color: ColorsApp.instance.cardgrey,
-                      fontWeight: TextStyles.instance.textSemiBold.fontWeight,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: context.screenHeight * 0.01),
+              // Row(
+              //   children: [
+              //     Text(
+              //       'Existem 6 aulas planejadas a mais que as necessárias.',
+              //       style: TextStyles.instance.texLabelH5.copyWith(
+              //         color: ColorsApp.instance.cardgrey,
+              //         fontWeight: TextStyles.instance.textSemiBold.fontWeight,
+              //       ),
+              //     ),
+              //   ],
+              // ),
               CardHorario(
                 label: 'Você ainda pode ter',
                 value: '${widget.disciplina.resumo.faltas} falta(s)',
@@ -87,8 +86,7 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               CardFaltasFuturas(
                 label: 'Horas aula futuras',
-                value: '${widget.disciplina.resumo.aulasFuturas[0]}H',
-                percent: '${widget.disciplina.resumo.aulasFuturas[1]}%',
+                value: '${widget.disciplina.resumo.aulasFuturas}H',
               ),
               SizedBox(height: context.screenHeight * 0.02),
               Row(
@@ -139,10 +137,26 @@ class _DashboardPageState extends State<DashboardPage> {
                 color: ColorsApp.instance.cardnoselected,
                 thickness: 1,
               ),
-              LineNotas(label: 'N1', value: 7.0.toString()),
-              LineNotas(label: 'N2', value: 7.0.toString()),
-              LineNotas(label: 'Media Parcial', value: 7.0.toString()),
-              LineNotas(label: 'Prova Final', value: 7.0.toString()),
+              LineNotas(
+                  label: 'N1',
+                  value: widget.disciplina.avaliacoes[0].toString() == ''
+                      ? '0'
+                      : widget.disciplina.avaliacoes[0].toString()),
+              LineNotas(
+                  label: 'N2',
+                  value: widget.disciplina.avaliacoes[1].toString() == ''
+                      ? '0'
+                      : widget.disciplina.avaliacoes[1].toString()),
+              LineNotas(
+                  label: 'Media Parcial',
+                  value: widget.disciplina.avaliacoes[2].toString() == ''
+                      ? '0'
+                      : widget.disciplina.avaliacoes[2].toString()),
+              LineNotas(
+                  label: 'Prova Final',
+                  value: widget.disciplina.avaliacoes[3].toString() == ''
+                      ? '0'
+                      : widget.disciplina.avaliacoes[3].toString()),
             ],
           ),
         ),

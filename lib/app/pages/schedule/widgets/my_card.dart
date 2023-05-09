@@ -40,32 +40,22 @@ class MyCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.all(context.screenHeight * 0.005),
-                decoration: BoxDecoration(
-                  color: ColorsApp.instance.cardred,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  horarioDetalhado.horario,
-                  style: TextStyles.instance.texLabelH4.copyWith(
-                    color: ColorsApp.instance.cardwhite,
-                    fontWeight: TextStyles.instance.textBold.fontWeight,
-                    fontSize: context.screenHeight * 0.017,
-                  ),
-                ),
+          Container(
+            padding: EdgeInsets.all(context.screenHeight * 0.005),
+            decoration: BoxDecoration(
+              color: ColorsApp.instance.cardred,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Text(
+              horarioDetalhado.horario,
+              style: TextStyles.instance.texLabelH4.copyWith(
+                color: ColorsApp.instance.cardwhite,
+                fontWeight: TextStyles.instance.textBold.fontWeight,
+                fontSize: context.screenHeight * 0.017,
               ),
-              Text(
-                horarioDetalhado.sala,
-                style: TextStyles.instance.texLabelH4.copyWith(
-                    color: colorLabel(),
-                    fontWeight: TextStyles.instance.textExtraBold.fontWeight),
-              ),
-            ],
+            ),
           ),
           SizedBox(height: context.screenHeight * 0.015),
           Row(
@@ -75,26 +65,36 @@ class MyCard extends StatelessWidget {
                 child: Text(
                   horarioDetalhado.disciplina,
                   style: TextStyles.instance.texLabelH4.copyWith(
-                      color: colorLabel(),
-                      fontWeight: TextStyles.instance.textSemiBold.fontWeight),
+                    color: colorLabel(),
+                    fontWeight: TextStyles.instance.textSemiBold.fontWeight,
+                  ),
                 ),
               ),
             ],
           ),
           SizedBox(height: context.screenHeight * 0.015),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                  horarioDetalhado.professor,
-                  style: TextStyles.instance.texLabelH5.copyWith(
-                      color: colorLabel(),
-                      fontWeight: TextStyles.instance.textSemiBold.fontWeight),
-                ),
-              ),
-            ],
+          Text(
+            horarioDetalhado.sala,
+            style: TextStyles.instance.texLabelH4.copyWith(
+              color: colorLabel(),
+              fontWeight: TextStyles.instance.texLabelH4.fontWeight,
+            ),
           ),
+          // SizedBox(height: context.screenHeight * 0.015),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.start,
+          //   children: [
+          //     Expanded(
+          //       child: Text(
+          //         'Nome do Professor',
+          //         style: TextStyles.instance.texLabelH4.copyWith(
+          //           color: colorLabel(),
+          //           fontWeight: TextStyles.instance.texLabelH4.fontWeight,
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

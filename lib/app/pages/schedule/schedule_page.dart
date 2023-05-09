@@ -20,8 +20,8 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
   @override
-  void onReady() {
-    controller.loadSchedule();
+  void onReady() async {
+    await controller.loadSchedule();
   }
 
   List<HorarioDetalhado> list = [];
@@ -75,20 +75,23 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                       for (int i = 0; i < 7; i++) {
                         daysOfWeek.add(startOfWeek.add(Duration(days: i)));
                       }
-
-                      list = state.schedule[state.selectedDay!].horarios;
+                      list = state
+                          .schedule[
+                              state.selectedDay ?? DateTime.now().weekday]
+                          .horarios;
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: LineDays(
-                            day: state.schedule[index],
-                            hoje: daysOfWeek[index].day,
-                            color: state.selectedDay == index
-                                ? ColorsApp.instance.cardwhite
-                                : ColorsApp.instance.cardnoselected,
-                            onPressed: () async {
-                              await controller.selectedDay(index);
-                              list = state.schedule[index].horarios;
-                            }),
+                          day: state.schedule[index],
+                          hoje: daysOfWeek[index].day,
+                          color: state.selectedDay == index
+                              ? ColorsApp.instance.cardwhite
+                              : ColorsApp.instance.cardnoselected,
+                          onPressed: () async {
+                            await controller.selectedDay(index);
+                            list = state.schedule[index].horarios;
+                          },
+                        ),
                       );
                     },
                   ),

@@ -20,14 +20,12 @@ class DailyPage extends StatefulWidget {
 }
 
 class _DailyPageState extends BaseState<DailyPage, DailyController> {
+  late List<DisciplinaModel> list = [];
   @override
-  void onReady() {
-    super.onReady();
-    controller.loadSemestre();
+  void onReady() async {
+    await controller.loadSemestre();
     list = controller.state.semestres[0].disciplinas;
   }
-
-  List<DisciplinaModel> list = [];
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +77,12 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: TextButton(
-                          onPressed: () => controller.selectedDay(index),
+                          onPressed: () {
+                            setState(() {
+                              controller.selectedDay(index);
+                              list = state.semestres[index].disciplinas;
+                            });
+                          },
                           child: Text(
                             state.semestres[index].semestre,
                             style: TextStyles.instance.texLabelH2.copyWith(
@@ -102,20 +105,36 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
                 padding: EdgeInsets.only(left: context.percentWidth(0.03)),
                 child: const LabelSubtitle(title: 'Disciplinas'),
               ),
-              BlocListener<DailyController, DailyState>(
+              BlocConsumer<DailyController, DailyState>(
                 listener: (context, state) {
-                  list = state.semestres[state.selected].disciplinas;
-                },
-                child: Expanded(
-                  child: ListView.builder(
-                    itemCount: list.length,
-                    itemBuilder: (context, index) {
-                      return ListaCardDisciplina(
-                        disciplina: list[index],
-                      );
+                  state.status.matchAny(
+                    any: () => hideLoader(),
+                    loading: () => showLoader(),
+                    error: () {
+                      hideLoader();
+                      showError(state.errorMessage ??
+                          'Erro ao carregar o cronograma');
                     },
-                  ),
+                  );
+                },
+                buildWhen: (previous, current) => current.status.matchAny(
+                  any: () => false,
+                  initial: () => true,
+                  loaded: () => true,
                 ),
+                builder: (context, state) {
+                  return Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListaCardDisciplina(
+                          disciplina: list[index],
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
               SizedBox(height: context.percentHeight(0.02))
             ],

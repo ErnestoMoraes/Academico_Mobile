@@ -34,7 +34,7 @@ class DailyState extends Equatable {
 
   DailyState.initial()
       : status = DailyStateSatus.initial,
-        semestres = [],
+        semestres = <SemestreModel>[],
         errorMessage = null,
         isNow = true,
         selected = 0;

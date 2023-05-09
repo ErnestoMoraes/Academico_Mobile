@@ -8,7 +8,7 @@ class CustomDio extends DioForNative {
           BaseOptions(
             baseUrl: Env.instance['base_url'] ?? '',
             connectTimeout: const Duration(milliseconds: 5000),
-            receiveTimeout: const Duration(milliseconds: 60000),
+            receiveTimeout: const Duration(milliseconds: 180000),
           ),
         ) {
     interceptors.add(LogInterceptor(

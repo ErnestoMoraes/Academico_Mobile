@@ -31,7 +31,9 @@ class _MySwitchState extends State<MySwitch> {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextButton(
-                onPressed: () => context.read<DailyController>().changeIsNow(),
+                onPressed: () {
+                  context.read<DailyController>().changeIsNow();
+                },
                 child: Text(
                   'Diário atual',
                   style: TextStyles.instance.texLabelH2.copyWith(

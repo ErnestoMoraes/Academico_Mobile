@@ -18,10 +18,11 @@ class DailyRepositoryImpl implements DailyRepository {
   @override
   Future<List<SemestreModel>> findDaily() async {
     try {
-      final result = await dio.unauth().get('/semestres');
-      return (result.data as List)
-          .map((e) => SemestreModel.fromJson(e as Map<String, dynamic>))
-          .toList();
+      final result = await dio.unauth().get('/lista-disciplinas');
+
+      final list = result.data as List;
+      final semestres = list.map((e) => SemestreModel.fromJson(e)).toList();
+      return semestres;
     } on DioError catch (e, s) {
       log('Erro ao nuscar semestres', error: e, stackTrace: s);
       throw RepositoryExceptions(message: 'Erro ao buscar semestres');

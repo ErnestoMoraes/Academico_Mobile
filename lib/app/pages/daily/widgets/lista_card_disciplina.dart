@@ -43,7 +43,7 @@ class ListaCardDisciplina extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        disciplina.id.toString(),
+                        disciplina.id.trim(),
                         style: TextStyles.instance.texLabelH5.copyWith(
                           color: ColorsApp.instance.labelblack1,
                           fontSize: 14,
@@ -53,20 +53,21 @@ class ListaCardDisciplina extends StatelessWidget {
                       ),
                       SizedBox(height: context.screenHeight * 0.005),
                       Text(
-                        disciplina.nome,
-                         style: TextStyles.instance.texLabelH4.copyWith(
+                        disciplina.nome.trim(),
+                        style: TextStyles.instance.texLabelH4.copyWith(
                             color: ColorsApp.instance.labelblack1,
-                            fontSize: 17,
+                            fontSize: 15,
                             fontWeight:
                                 TextStyles.instance.textSemiBold.fontWeight),
                       ),
-                      SizedBox(height: context.screenHeight * 0.002),
+                      SizedBox(height: context.screenHeight * 0.005),
                       Text(
-                        disciplina.professor,
+                        disciplina.professor.trim(),
                         style: TextStyles.instance.texLabelH5.copyWith(
-                            color: ColorsApp.instance.labelblack1,
-                            fontWeight:
-                                TextStyles.instance.textSemiBold.fontWeight),
+                          color: ColorsApp.instance.labelblack1,
+                          fontWeight:
+                              TextStyles.instance.textSemiBold.fontWeight,
+                        ),
                       ),
                     ],
                   ),
