@@ -3,10 +3,11 @@ import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:academico_mobile/app/core/ui/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:academico_mobile/app/models/home_model.dart';
+
 class CardHome extends StatelessWidget {
   final HomePageModel listaCards;
 
-  const  CardHome({
+  const CardHome({
     Key? key,
     required this.listaCards,
   }) : super(key: key);
@@ -18,7 +19,7 @@ class CardHome extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all(ColorsApp.instance.cardnoselected),
+              MaterialStateProperty.all(ColorsApp.instance.primary),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),

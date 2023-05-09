@@ -49,4 +49,5 @@ class DailyController extends Cubit<DailyState> {
     await Future.delayed(const Duration(seconds: 1));
     emit(state.copyWith(status: DailyStateSatus.loaded, selected: index));
   }
+
 }

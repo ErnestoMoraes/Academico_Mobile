@@ -29,7 +29,7 @@ class LineDashboard extends StatelessWidget {
               child: Text(
                 label,
                 style: TextStyles.instance.texLabelH4.copyWith(
-                  color: ColorsApp.instance.labelblack4,
+                  color: ColorsApp.instance.cardwhite,
                   fontWeight: TextStyles.instance.textSemiBold.fontWeight,
                 ),
               ),
@@ -39,7 +39,7 @@ class LineDashboard extends StatelessWidget {
               child: Text(
                 value,
                 style: TextStyles.instance.texLabelH4.copyWith(
-                  color: ColorsApp.instance.labelblack4,
+                  color: ColorsApp.instance.cardwhite,
                   fontWeight: TextStyles.instance.textSemiBold.fontWeight,
                 ),
               ),
@@ -49,7 +49,7 @@ class LineDashboard extends StatelessWidget {
               child: Text(
                 '$percent%',
                 style: TextStyles.instance.texLabelH4.copyWith(
-                  color: ColorsApp.instance.labelblack4,
+                  color: ColorsApp.instance.cardwhite,
                   fontWeight: TextStyles.instance.textSemiBold.fontWeight,
                 ),
               ),

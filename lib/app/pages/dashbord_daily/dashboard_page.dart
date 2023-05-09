@@ -102,7 +102,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ],
               ),
               Divider(
-                color: ColorsApp.instance.cardnoselected,
+                color: ColorsApp.instance.background,
                 thickness: 1,
               ),
               LineDashboard(
@@ -134,7 +134,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ],
               ),
               Divider(
-                color: ColorsApp.instance.cardnoselected,
+                color: ColorsApp.instance.background,
                 thickness: 1,
               ),
               LineNotas(

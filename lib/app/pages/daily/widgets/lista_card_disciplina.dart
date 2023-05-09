@@ -20,7 +20,6 @@ class ListaCardDisciplina extends StatelessWidget {
     return InkWell(
       splashColor: ColorsApp.instance.background,
       onTap: () {
-        print('Disciplina: ${disciplina.nome}');
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => DashboardPage(

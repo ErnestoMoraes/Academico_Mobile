@@ -40,7 +40,7 @@ class MyAppbar extends AppBar {
           elevation: elevation,
           title: Text(
             title,
-            style: TextStyles.instance.labelPage,
+            style: TextStyles.instance.labelPage
           ),
           centerTitle: true,
           backgroundColor: ColorsApp.instance.background,

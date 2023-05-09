@@ -1,4 +1,5 @@
 import 'package:academico_mobile/app/core/ui/styles/app_styles.dart';
+import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
 import 'package:flutter/material.dart';
 
 class MyInputButton extends StatelessWidget {
@@ -21,7 +22,11 @@ class MyInputButton extends StatelessWidget {
       width: width,
       height: height,
       child: ElevatedButton(
-        style: context.appStyles.buttonStyle,
+        style: context.appStyles.buttonStyle.copyWith(
+          backgroundColor: MaterialStateProperty.all<Color>(
+            ColorsApp.instance.cardblue,
+          ),
+        ),
         onPressed: onPressed,
         child: Text(label),
       ),

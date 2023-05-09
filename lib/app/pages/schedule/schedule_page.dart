@@ -76,8 +76,7 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                         daysOfWeek.add(startOfWeek.add(Duration(days: i)));
                       }
                       list = state
-                          .schedule[
-                              state.selectedDay ?? DateTime.now().weekday]
+                          .schedule[state.selectedDay ?? DateTime.now().weekday]
                           .horarios;
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
