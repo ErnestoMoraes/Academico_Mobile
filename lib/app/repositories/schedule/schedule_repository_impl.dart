@@ -19,7 +19,7 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
   @override
   Future<List<Horario>> findSchedule() async {
     try {
-      final result = await dio.unauth().get('/horarios');
+      final result = await dio.auth().get('/horarios');
       final data = json.decode(result.data);
       final retorno = (data as List).map((e) => Horario.fromJson(e)).toList();
       return retorno;

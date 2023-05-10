@@ -18,7 +18,7 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<List<HomePageModel>> getHomePage() async {
     try {
-      final result = await dio.unauth().get('/homepage');
+      final result = await dio.auth().get('/homepage');
       return (result.data as List)
           .map((e) => HomePageModel.fromJson(e))
           .toList();
