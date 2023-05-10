@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MySwitch extends StatefulWidget {
-  const MySwitch({super.key});
+  const MySwitch({
+    super.key,
+  });
 
   @override
   State<MySwitch> createState() => _MySwitchState();

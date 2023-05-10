@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:academico_mobile/app/core/exceptions/repository_exceptions.dart';
@@ -19,9 +20,9 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
   Future<List<Horario>> findSchedule() async {
     try {
       final result = await dio.unauth().get('/horarios');
-      return (result.data as List)
-          .map((e) => Horario.fromJson(e as Map<String, dynamic>))
-          .toList();
+      final data = json.decode(result.data);
+      final retorno = (data as List).map((e) => Horario.fromJson(e)).toList();
+      return retorno;
     } on DioError catch (e, s) {
       log('Erro ao buscar horários', error: e, stackTrace: s);
       throw RepositoryExceptions(message: 'Erro ao buscar horários');

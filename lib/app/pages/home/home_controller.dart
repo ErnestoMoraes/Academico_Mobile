@@ -24,4 +24,5 @@ class HomeController extends Cubit<HomeState> {
           errorMessage: 'Error ao carregar home page'));
     }
   }
+
 }

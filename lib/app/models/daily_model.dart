@@ -19,7 +19,7 @@ class SemestreModel {
 }
 
 class DisciplinaModel {
-  int id;
+  String id;
   String nome;
   String professor;
   Resumo resumo;
@@ -37,8 +37,8 @@ class DisciplinaModel {
     List<String> avaliacoes =
         List<String>.from(json["avaliacoes"].map((x) => x.toString()));
     return DisciplinaModel(
-        id: json["id"],
-        nome: json["nome"],
+        id: json["id"] ?? '0',
+        nome: json["nome"] ?? '',
         professor: json["professor"],
         resumo: Resumo.fromJson(json["resumo"]),
         avaliacoes: avaliacoes);
@@ -56,7 +56,7 @@ class DisciplinaModel {
 class Resumo {
   String cargaHoraria;
   String faltas;
-  List<String> aulasFuturas;
+  String aulasFuturas;
   List<String> presencas;
   List<String> ausencias;
   List<String> pendentes;
@@ -80,13 +80,10 @@ class Resumo {
     List<String> pendentes = List<String>.from(
       json["pendentes"].map((x) => x.toString()),
     );
-    List<String> aulasFuturas = List<String>.from(
-      json["aulas_futuras"].map((x) => x.toString()),
-    );
     return Resumo(
         cargaHoraria: json["carga_horaria"],
         faltas: json["faltas"],
-        aulasFuturas: aulasFuturas,
+        aulasFuturas: json["aulas_futuras"],
         presencas: presencas,
         ausencias: ausencias,
         pendentes: pendentes);
@@ -95,7 +92,7 @@ class Resumo {
   Map<String, dynamic> toJson() => {
         "carga_horaria": cargaHoraria,
         "faltas": faltas,
-        "aulas_futuras": List<dynamic>.from(aulasFuturas.map((x) => x)),
+        "aulas_futuras": aulasFuturas,
         "presencas": List<dynamic>.from(presencas.map((x) => x)),
         "ausencias": List<dynamic>.from(ausencias.map((x) => x)),
         "pendentes": List<dynamic>.from(pendentes.map((x) => x)),

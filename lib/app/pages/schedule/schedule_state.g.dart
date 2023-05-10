@@ -11,6 +11,7 @@ extension ScheduleStatusMatch on ScheduleStatus {
       {required T Function() initial,
       required T Function() loading,
       required T Function() loaded,
+      required T Function() selectedDay,
       required T Function() error}) {
     final v = this;
     if (v == ScheduleStatus.initial) {
@@ -25,6 +26,10 @@ extension ScheduleStatusMatch on ScheduleStatus {
       return loaded();
     }
 
+    if (v == ScheduleStatus.selectedDay) {
+      return selectedDay();
+    }
+
     if (v == ScheduleStatus.error) {
       return error();
     }
@@ -37,6 +42,7 @@ extension ScheduleStatusMatch on ScheduleStatus {
       T Function()? initial,
       T Function()? loading,
       T Function()? loaded,
+      T Function()? selectedDay,
       T Function()? error}) {
     final v = this;
     if (v == ScheduleStatus.initial && initial != null) {
@@ -49,6 +55,10 @@ extension ScheduleStatusMatch on ScheduleStatus {
 
     if (v == ScheduleStatus.loaded && loaded != null) {
       return loaded();
+    }
+
+    if (v == ScheduleStatus.selectedDay && selectedDay != null) {
+      return selectedDay();
     }
 
     if (v == ScheduleStatus.error && error != null) {

@@ -15,7 +15,33 @@ class MyAppbar extends AppBar {
     required final VoidCallback onPressed,
   }) : super(
           elevation: elevation,
-          title: Text(title, style: TextStyles.instance.labelPage),
+          title: Text(
+            title,
+            style: TextStyles.instance.labelPage.copyWith(
+              fontSize: 15,
+            ),
+          ),
+          centerTitle: true,
+          backgroundColor: ColorsApp.instance.background,
+          leading: IconButton(
+            icon: Icon(icon),
+            onPressed: onPressed,
+          ),
+        );
+
+  MyAppbar.normal({
+    super.key,
+    double elevation = 0,
+    required String title,
+    String subtitle = '',
+    IconData icon = Icons.arrow_back_ios,
+    required final VoidCallback onPressed,
+  }) : super(
+          elevation: elevation,
+          title: Text(
+            title,
+            style: TextStyles.instance.labelPage
+          ),
           centerTitle: true,
           backgroundColor: ColorsApp.instance.background,
           leading: IconButton(
@@ -43,7 +69,7 @@ class MyAppbar extends AppBar {
                 return Container(
                   alignment: Alignment.center,
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   margin:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   decoration: BoxDecoration(
@@ -58,7 +84,7 @@ class MyAppbar extends AppBar {
                       color: state.isOn
                           ? ColorsApp.instance.cardwhite
                           : ColorsApp.instance.cardwhite,
-                      fontSize: 15,
+                      fontSize: 12,
                       fontWeight:
                           TextStyles.instance.textButtonLabel.fontWeight,
                     ),

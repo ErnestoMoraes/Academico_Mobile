@@ -22,6 +22,7 @@ class DailyState extends Equatable {
   final String? errorMessage;
   final bool isNow;
   final int selected;
+  
 
   const DailyState({
     required this.status,
@@ -33,7 +34,7 @@ class DailyState extends Equatable {
 
   DailyState.initial()
       : status = DailyStateSatus.initial,
-        semestres = [],
+        semestres = <SemestreModel>[],
         errorMessage = null,
         isNow = true,
         selected = 0;

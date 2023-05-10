@@ -20,8 +20,8 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
   @override
-  void onReady() {
-    controller.loadSchedule();
+  void onReady() async {
+    await controller.loadSchedule();
   }
 
   List<HorarioDetalhado> list = [];
@@ -29,7 +29,7 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(
+      appBar: MyAppbar.normal(
         title: 'Cronograma de Aulas',
         onPressed: () => Navigator.pop(context),
       ),
@@ -63,23 +63,34 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                 ),
                 SizedBox(height: context.percentWidth(0.05)),
                 SizedBox(
-                  height: 80,
+                  height: 90,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: state.schedule.length,
                     itemBuilder: (context, index) {
-                      list = state.schedule[state.selectedDay!].horarios;
+                      final now = DateTime.now();
+                      final startOfWeek =
+                          now.subtract(Duration(days: now.weekday));
+                      final List<DateTime> daysOfWeek = [];
+                      for (int i = 0; i < 7; i++) {
+                        daysOfWeek.add(startOfWeek.add(Duration(days: i)));
+                      }
+                      list = state
+                          .schedule[state.selectedDay ?? DateTime.now().weekday]
+                          .horarios;
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: LineDays(
-                            day: state.schedule[index],
-                            color: state.selectedDay == index
-                                ? ColorsApp.instance.cardwhite
-                                : ColorsApp.instance.cardnoselected,
-                            onPressed: () async {
-                              await controller.selectedDay(index);
-                              list = state.schedule[index].horarios;
-                            }),
+                          day: state.schedule[index],
+                          hoje: daysOfWeek[index].day,
+                          color: state.selectedDay == index
+                              ? ColorsApp.instance.cardwhite
+                              : ColorsApp.instance.cardnoselected,
+                          onPressed: () async {
+                            await controller.selectedDay(index);
+                            list = state.schedule[index].horarios;
+                          },
+                        ),
                       );
                     },
                   ),
