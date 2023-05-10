@@ -77,8 +77,11 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
                         ),
                         TextFormField(
                           controller: matriculaEC,
-                          validator:
-                              Validatorless.required('Matricula Obrigatória'),
+                          validator: Validatorless.multiple([
+                            Validatorless.required('Matricula Obrigatória'),
+                            Validatorless.min(
+                                6, 'Matricula deve ter no mínimo 6 caracteres'),
+                          ]),
                           keyboardType: TextInputType.number,
                           style: TextStyles.instance.texLabelH4.copyWith(
                             color: ColorsApp.instance.labelblack1,
