@@ -1,5 +1,6 @@
 # academico_mobile
 
+
 Link do Figma: https://www.figma.com/file/tFLY9uOoiAXYoHrqj7uHiI/Untitled?node-id=0%3A1&t=LloEngcQkWGb6Bna-1
 
 Atividade 01:
@@ -12,3 +13,4 @@ Atividade 01:
  
  - [ ] senha: cddbdabqeujfjluo
  - [ ] lembrar do delay na requisição de 2s.
+=======
