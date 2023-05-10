@@ -31,13 +31,27 @@ class LineNotas extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-              child: Text(
-                value,
-                style: TextStyles.instance.texLabelH4.copyWith(
-                  color: ColorsApp.instance.cardwhite,
-                  fontWeight: TextStyles.instance.textSemiBold.fontWeight,
-                ),
-              ),
+              child: value == '99'
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: ColorsApp.instance.cardnoselected,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        'N/A',
+                        style: TextStyles.instance.texLabelH4.copyWith(
+                          color: ColorsApp.instance.cardwhite,
+                          fontWeight:
+                              TextStyles.instance.textSemiBold.fontWeight,
+                        ),
+                      ))
+                  : Text(
+                      value,
+                      style: TextStyles.instance.texLabelH4.copyWith(
+                        color: ColorsApp.instance.cardwhite,
+                        fontWeight: TextStyles.instance.textSemiBold.fontWeight,
+                      ),
+                    ),
             ),
           ],
         ),

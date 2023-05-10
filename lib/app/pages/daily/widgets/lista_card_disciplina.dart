@@ -20,6 +20,9 @@ class ListaCardDisciplina extends StatelessWidget {
     return InkWell(
       splashColor: ColorsApp.instance.background,
       onTap: () {
+        if (disciplina.avaliacoes.isEmpty) {
+          disciplina.avaliacoes.addAll(['99', '99', '99', '99', '99']);
+        }
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => DashboardPage(
