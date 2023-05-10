@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MySwitch extends StatefulWidget {
-  const MySwitch({super.key});
+  const MySwitch({
+    super.key,
+  });
 
   @override
   State<MySwitch> createState() => _MySwitchState();
@@ -31,9 +33,7 @@ class _MySwitchState extends State<MySwitch> {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: TextButton(
-                onPressed: () {
-                  context.read<DailyController>().changeIsNow();
-                },
+                onPressed: () => context.read<DailyController>().changeIsNow(),
                 child: Text(
                   'Diário atual',
                   style: TextStyles.instance.texLabelH2.copyWith(

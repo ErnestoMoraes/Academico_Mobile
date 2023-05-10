@@ -32,7 +32,7 @@ class ScheduleState extends Equatable {
       : status = ScheduleStatus.initial,
         schedule = <Horario>[],
         errorMessage = null,
-        selectedDay = DateTime.now().weekday - 1;
+        selectedDay = DateTime.now().weekday;
 
   @override
   List<Object?> get props => [status, schedule, errorMessage, selectedDay];
