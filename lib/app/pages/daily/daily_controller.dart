@@ -33,21 +33,19 @@ class DailyController extends Cubit<DailyState> {
   void changeIsNow() async {
     emit(state.copyWith(status: DailyStateSatus.loading));
     await Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(milliseconds: 700),
     );
     emit(
       state.copyWith(
         status: DailyStateSatus.loaded,
         isNow: !state.isNow,
-
       ),
     );
   }
 
   Future<void> selectedDay(int index) async {
     emit(state.copyWith(status: DailyStateSatus.loading));
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 700));
     emit(state.copyWith(status: DailyStateSatus.loaded, selected: index));
   }
-
 }

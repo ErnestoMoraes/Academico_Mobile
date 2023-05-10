@@ -12,12 +12,13 @@ class ScheduleController extends Cubit<ScheduleState> {
   Future<void> loadSchedule() async {
     emit(state.copyWith(status: ScheduleStatus.loading));
     try {
-      await Future.delayed(const Duration(seconds: 2));
       final schedule = await _scheduleRepository.findSchedule();
       emit(state.copyWith(status: ScheduleStatus.loaded, schedule: schedule));
     } catch (e, s) {
       log('Erro ao carregar o cronograma', error: e, stackTrace: s);
-      emit(state.copyWith(status: ScheduleStatus.error, errorMessage: 'Erro ao carregar o cronograma'));
+      emit(state.copyWith(
+          status: ScheduleStatus.error,
+          errorMessage: 'Erro ao carregar o cronograma'));
     }
   }
 
@@ -26,5 +27,4 @@ class ScheduleController extends Cubit<ScheduleState> {
     await Future.delayed(const Duration(seconds: 1));
     emit(state.copyWith(status: ScheduleStatus.loaded, selectedDay: day));
   }
-
 }

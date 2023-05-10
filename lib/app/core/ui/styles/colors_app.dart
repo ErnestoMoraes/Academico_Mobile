@@ -20,6 +20,9 @@ class ColorsApp {
   Color get primary => const Color(0xFF0D47A1);
   Color get secondary => const Color(0xFFFFC107);
 
+  Color get manha => const Color(0xFF3C6E71);
+  Color get tarde => const Color(0xFF2F3061);
+
   Color get switchbackground => const Color(0xFF282827);
 
   Color get labelblack1 => const Color(0xFF1E1E1E);

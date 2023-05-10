@@ -50,7 +50,7 @@ class ListaCardDisciplina extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.all(context.screenHeight * 0.005),
                         decoration: BoxDecoration(
-                          color: ColorsApp.instance.cardblue,
+                          color: ColorsApp.instance.primary,
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Text(
