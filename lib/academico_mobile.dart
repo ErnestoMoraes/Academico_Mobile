@@ -4,7 +4,9 @@ import 'package:academico_mobile/app/pages/daily/daily_router.dart';
 import 'package:academico_mobile/app/pages/home/home_router.dart';
 import 'package:academico_mobile/app/pages/login/login_router.dart';
 import 'package:academico_mobile/app/pages/recover_password/recover_password_page.dart';
+import 'package:academico_mobile/app/pages/request_documents/request_documents_page.dart';
 import 'package:academico_mobile/app/pages/schedule/schedule_router.dart';
+import 'package:academico_mobile/app/pages/school_records/school_records_page.dart';
 import 'package:academico_mobile/app/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +27,8 @@ class AcademicoMobile extends StatelessWidget {
           '/daily': (context) => DailyRouter.page,
           '/home': (context) => HomeRouter.page,
           '/recover-password': (context) => const RecoverPasswordPage(),
+          '/school_records': (context) => const SchoolRecordsPage(),
+          '/request_documents': (context) => const RequestDocumentsPage(),
         },
       ),
     );

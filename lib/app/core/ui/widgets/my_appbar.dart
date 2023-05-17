@@ -38,10 +38,7 @@ class MyAppbar extends AppBar {
     required final VoidCallback onPressed,
   }) : super(
           elevation: elevation,
-          title: Text(
-            title,
-            style: TextStyles.instance.labelPage
-          ),
+          title: Text(title, style: TextStyles.instance.labelPage),
           centerTitle: true,
           backgroundColor: ColorsApp.instance.background,
           leading: IconButton(
@@ -56,12 +53,21 @@ class MyAppbar extends AppBar {
     required String title,
     String subtitle = '',
     IconData icon = Icons.arrow_back_ios,
+    required final VoidCallback onPressed,
   }) : super(
           elevation: elevation,
           title: Text(title, style: TextStyles.instance.labelPage),
           centerTitle: true,
           backgroundColor: ColorsApp.instance.background,
           automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.menu_rounded,
+              color: Colors.white,
+              size: 35,
+            ),
+            onPressed: onPressed,
+          ),
           actions: [
             BlocConsumer<HomeController, HomeState>(
               listener: (context, state) {},
