@@ -1,5 +1,6 @@
 import 'package:academico_mobile/app/core/provider/application_binding.dart';
 import 'package:academico_mobile/app/core/ui/theme/theme_config.dart';
+import 'package:academico_mobile/app/pages/about/about_page.dart';
 import 'package:academico_mobile/app/pages/daily/daily_router.dart';
 import 'package:academico_mobile/app/pages/home/home_router.dart';
 import 'package:academico_mobile/app/pages/login/login_router.dart';
@@ -29,6 +30,7 @@ class AcademicoMobile extends StatelessWidget {
           '/recover-password': (context) => const RecoverPasswordPage(),
           '/school_records': (context) => const SchoolRecordsPage(),
           '/request_documents': (context) => const RequestDocumentsPage(),
+          '/about': (context) => AboutPage(),
         },
       ),
     );

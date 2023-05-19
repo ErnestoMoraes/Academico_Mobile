@@ -5,6 +5,7 @@ import 'package:academico_mobile/app/core/ui/widgets/my_appbar.dart';
 import 'package:academico_mobile/app/pages/home/home_controller.dart';
 import 'package:academico_mobile/app/pages/home/home_state.dart';
 import 'package:academico_mobile/app/pages/home/widgets/card_home.dart';
+import 'package:academico_mobile/app/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,9 +32,9 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
   Widget buildDrawer(BuildContext context) => Drawer(
         backgroundColor: context.colorsApp.background,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             buildHeaderDrawer(context),
+            Divider(color: Colors.grey[300], height: 1),
             Expanded(
               child: buildMenuItems(context),
             ),
@@ -42,32 +43,53 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
         ),
       );
 
-  Widget finishDrawer(BuildContext context) => Container(
-        padding: EdgeInsets.only(
-          bottom: context.percentWidth(.05),
-        ),
-        alignment: Alignment.bottomCenter,
-        child: Wrap(
-          children: [
-            ListTile(
-              title: Text(
-                'Logout',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey[300],
-                ),
-              ),
-              leading: Icon(Icons.logout, size: 30, color: Colors.grey[300]),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+  Widget finishDrawer(BuildContext context) => InkWell(
+        onTap: () async {
+          await controller.logout().then((value) {
+            Navigator.of(context).pop();
+          });
+        },
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: context.percentWidth(.03),
+          ),
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: context.percentWidth(.05),
             ),
-          ],
+            padding: EdgeInsets.symmetric(
+              horizontal: context.percentWidth(.05),
+              vertical: context.percentWidth(.03),
+            ),
+            decoration: BoxDecoration(
+              color: Colors.redAccent,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                SizedBox(width: 30),
+                Text(
+                  'Sair',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       );
 
   Widget buildHeaderDrawer(BuildContext context) => Container(
-        color: context.colorsApp.primary,
+        color: context.colorsApp.background,
         padding: EdgeInsets.only(
             top: 24 + MediaQuery.of(context).padding.top, bottom: 24),
         child: Column(
@@ -110,23 +132,23 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
               size: 30,
               color: Colors.grey,
             ),
-            onTap: () => Navigator.of(context).pop(),
+            onTap: () => Navigator.of(context).pushNamed('/about'),
           ),
-          ListTile(
-            title: const Text(
-              'Contato',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.grey,
-              ),
-            ),
-            leading: const Icon(
-              Icons.comment_sharp,
-              size: 30,
-              color: Colors.grey,
-            ),
-            onTap: () => Navigator.of(context).pop(),
-          ),
+          // ListTile(
+          //   title: const Text(
+          //     'Contato',
+          //     style: TextStyle(
+          //       fontSize: 20,
+          //       color: Colors.grey,
+          //     ),
+          //   ),
+          //   leading: const Icon(
+          //     Icons.comment_sharp,
+          //     size: 30,
+          //     color: Colors.grey,
+          //   ),
+          //   onTap: () => Navigator.of(context).pop(),
+          // ),
         ],
       );
 

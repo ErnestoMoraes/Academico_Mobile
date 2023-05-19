@@ -193,7 +193,7 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
                               'Me manter conectado',
                               style: TextStyles.instance.texLabelH3.copyWith(
                                 color: ColorsApp.instance.cardwhite,
-                                fontSize: 15,
+                                fontSize: 17,
                                 fontWeight: TextStyles
                                     .instance.textButtonLabel.fontWeight,
                               ),

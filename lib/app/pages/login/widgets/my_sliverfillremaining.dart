@@ -20,7 +20,7 @@ class MySliverfillremaining extends StatelessWidget {
             child: Text(
               'Esqueceu sua senha? Recuperar senha.',
               style: TextStyles.instance.texLabelH4.copyWith(
-                color: ColorsApp.instance.labelblack4,
+                color: ColorsApp.instance.cardwhite,
                 fontWeight: TextStyles.instance.textSemiBold.fontWeight,
               ),
             ),
