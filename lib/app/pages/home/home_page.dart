@@ -5,7 +5,6 @@ import 'package:academico_mobile/app/core/ui/widgets/my_appbar.dart';
 import 'package:academico_mobile/app/pages/home/home_controller.dart';
 import 'package:academico_mobile/app/pages/home/home_state.dart';
 import 'package:academico_mobile/app/pages/home/widgets/card_home.dart';
-import 'package:academico_mobile/app/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
