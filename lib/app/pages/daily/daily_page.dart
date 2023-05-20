@@ -24,9 +24,7 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
   @override
   void onReady() async {
     await controller.loadSemestre();
-    if (controller.state.isNow) {
-      list = controller.state.semestres[0].disciplinas;
-    }
+    list = controller.state.semestres[0].disciplinas;
   }
 
   @override
@@ -125,10 +123,12 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
                   loaded: () => true,
                 ),
                 builder: (context, state) {
-                  if (state.isNow) {
-                    list = state.semestres[0].disciplinas;
-                  } else {
-                    list = state.semestres[state.selected].disciplinas;
+                  if (state.isNow && state.semestres.isNotEmpty) {
+                    list = controller.state.semestres[0].disciplinas;
+                  }
+                  if (!state.isNow && state.semestres.isNotEmpty) {
+                    list =
+                        controller.state.semestres[state.selected].disciplinas;
                   }
                   return Expanded(
                     child: ListView.builder(

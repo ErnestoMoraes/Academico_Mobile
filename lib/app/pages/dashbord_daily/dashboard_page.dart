@@ -68,17 +68,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 label: 'Carga Horária Total',
                 value: '${widget.disciplina.resumo.cargaHoraria}H',
               ),
-              // Row(
-              //   children: [
-              //     Text(
-              //       'Existem 6 aulas planejadas a mais que as necessárias.',
-              //       style: TextStyles.instance.texLabelH5.copyWith(
-              //         color: ColorsApp.instance.cardgrey,
-              //         fontWeight: TextStyles.instance.textSemiBold.fontWeight,
-              //       ),
-              //     ),
-              //   ],
-              // ),
               CardHorario(
                 label: 'Você ainda pode ter',
                 value: '${widget.disciplina.resumo.faltas} falta(s)',

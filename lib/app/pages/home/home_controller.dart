@@ -25,4 +25,17 @@ class HomeController extends Cubit<HomeState> {
     }
   }
 
+  Future<void> logout() async {
+    emit(state.copyWith(status: HomeStateStatus.loading));
+    try {
+      await Future.delayed(const Duration(seconds: 2));
+      emit(state.copyWith(status: HomeStateStatus.loaded));
+    } catch (e, s) {
+      log('Error ao realizar logout', error: e, stackTrace: s);
+      emit(state.copyWith(
+          status: HomeStateStatus.error,
+          isOn: true,
+          errorMessage: 'Error ao realizar logout'));
+    }
+  }
 }

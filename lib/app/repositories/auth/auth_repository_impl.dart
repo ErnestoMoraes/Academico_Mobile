@@ -18,7 +18,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthModel> login(String matricula, String password) async {
     try {
-      final response = await dio.unauth().post(
+      final response = await dio.auth().post(
         '/login',
         data: {'matricula': matricula, 'password': password},
       );

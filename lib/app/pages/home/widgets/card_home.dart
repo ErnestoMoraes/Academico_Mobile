@@ -44,6 +44,7 @@ class CardHome extends StatelessWidget {
               ),
               Text(
                 listaCards.name,
+                textAlign: TextAlign.center,
                 style: TextStyles.instance.texLabelH4.copyWith(
                   fontSize: context.screenWidth * 0.045,
                   color: ColorsApp.instance.cardwhite,

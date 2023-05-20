@@ -1,7 +1,5 @@
-# academico_mobile
+# Acadêmico Mobile
 
-
-Link do Figma: https://www.figma.com/file/tFLY9uOoiAXYoHrqj7uHiI/Untitled?node-id=0%3A1&t=LloEngcQkWGb6Bna-1
 
 Atividade 01:
  - [ ] Instalar Assets (Imagens e Fonts)
@@ -10,7 +8,5 @@ Atividade 01:
  - [ ] Preparando Extensions de UI
  - [ ] Dotenv
  - [ ] RestClient - Dio
- 
- - [ ] senha: cddbdabqeujfjluo
- - [ ] lembrar do delay na requisição de 2s.
+
 =======

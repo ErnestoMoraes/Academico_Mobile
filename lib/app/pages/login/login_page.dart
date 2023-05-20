@@ -23,6 +23,7 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
   TextEditingController matriculaEC = TextEditingController();
   TextEditingController passwordEC = TextEditingController();
   bool _obscuredText = true;
+  bool check = false;
 
   @override
   void dispose() {
@@ -33,6 +34,12 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    void toogleCheck() {
+      setState(() {
+        check = !check;
+      });
+    }
+
     return BlocListener<LoginController, LoginState>(
       listener: (context, state) {
         state.status.matchAny(
@@ -77,8 +84,11 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
                         ),
                         TextFormField(
                           controller: matriculaEC,
-                          validator:
-                              Validatorless.required('Matricula Obrigatória'),
+                          validator: Validatorless.multiple([
+                            Validatorless.required('Matricula Obrigatória'),
+                            Validatorless.min(
+                                6, 'Matricula deve ter no mínimo 6 caracteres'),
+                          ]),
                           keyboardType: TextInputType.number,
                           style: TextStyles.instance.texLabelH4.copyWith(
                             color: ColorsApp.instance.labelblack1,
@@ -151,6 +161,44 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
                               ),
                             ],
                           ),
+                        ),
+                        SizedBox(
+                          height: context.screenHeight * .02,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            check == false
+                                ? IconButton(
+                                    onPressed: () {
+                                      toogleCheck();
+                                    },
+                                    icon: Icon(
+                                      Icons.check_box_outline_blank_rounded,
+                                      color: ColorsApp.instance.cardwhite,
+                                      size: 25,
+                                    ),
+                                  )
+                                : IconButton(
+                                    onPressed: () {
+                                      toogleCheck();
+                                    },
+                                    icon: Icon(
+                                      Icons.check_box_rounded,
+                                      color: ColorsApp.instance.cardwhite,
+                                      size: 25,
+                                    ),
+                                  ),
+                            Text(
+                              'Me manter conectado',
+                              style: TextStyles.instance.texLabelH3.copyWith(
+                                color: ColorsApp.instance.cardwhite,
+                                fontSize: 17,
+                                fontWeight: TextStyles
+                                    .instance.textButtonLabel.fontWeight,
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: context.screenHeight * .07,

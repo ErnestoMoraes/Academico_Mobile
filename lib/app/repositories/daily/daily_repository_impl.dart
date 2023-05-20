@@ -18,7 +18,7 @@ class DailyRepositoryImpl implements DailyRepository {
   @override
   Future<List<SemestreModel>> findDaily() async {
     try {
-      final result = await dio.unauth().get('/lista-disciplinas');
+      final result = await dio.auth().get('/lista-disciplinas');
       final list = result.data as List;
       final semestres = list.map((e) => SemestreModel.fromJson(e)).toList();
       return semestres;
