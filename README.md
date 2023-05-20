@@ -32,7 +32,7 @@ O Aplicativo não tinha o intuito de conter todas as funcionalidades do Q-Acadê
 
 
 ## Instalação
-Para executar o jogo localmente, siga as etapas abaixo:
+Para executar o aplicativo mobile, siga as etapas abaixo:
 
 1. Clone este repositório em sua máquina:
    ```
