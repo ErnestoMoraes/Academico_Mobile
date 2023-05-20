@@ -30,7 +30,7 @@ class AcademicoMobile extends StatelessWidget {
           '/recover-password': (context) => const RecoverPasswordPage(),
           '/school_records': (context) => const SchoolRecordsPage(),
           '/request_documents': (context) => const RequestDocumentsPage(),
-          '/about': (context) => AboutPage(),
+          '/about': (context) => const AboutPage(),
         },
       ),
     );
