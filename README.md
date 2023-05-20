@@ -73,8 +73,6 @@ Se você deseja contribuir para este projeto, siga as etapas abaixo:
 6. Abra um pull request no repositório original.
 ---
 
-Aproveite o jogo "Round 6 Flip Card"! Se divirta e tente alcançar a pontuação mais alta em cada nível. Se tiver alguma dúvida ou encontrar algum problema, sinta-se à vontade para entrar em contato conosco.
-
 <div align="center">
   <br/>
   <br/>
