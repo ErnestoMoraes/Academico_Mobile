@@ -36,11 +36,11 @@ Para executar o jogo localmente, siga as etapas abaixo:
 
 1. Clone este repositório em sua máquina:
    ```
-   git clone https://github.com/ErnestoMoraes/Round6_Memory.git
+   git clone https://github.com/ErnestoMoraes/Academico_Mobile
    ```
 2. Navegue até o diretório do projeto:
    ```
-   cd round6
+   cd academico_mobile
    ```
 3. Inicie o jogo:
    ```
