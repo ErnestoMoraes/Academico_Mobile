@@ -8,6 +8,7 @@ enum HomeStateStatus {
   initial,
   loading,
   loaded,
+  deslogado,
   error,
 }
 

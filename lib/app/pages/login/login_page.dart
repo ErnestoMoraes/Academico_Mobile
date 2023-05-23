@@ -36,6 +36,7 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
   Future<void> fetchSecureStorageData() async {
     matriculaEC.text = await _secureStorage.getUserName() ?? '';
     passwordEC.text = await _secureStorage.getPassWord() ?? '';
+    print('username: ${matriculaEC.text}, password: ${passwordEC.text}');
   }
 
   @override

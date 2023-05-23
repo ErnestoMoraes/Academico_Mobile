@@ -8,7 +8,7 @@ import 'package:academico_mobile/app/pages/recover_password/recover_password_pag
 import 'package:academico_mobile/app/pages/request_documents/request_documents_page.dart';
 import 'package:academico_mobile/app/pages/schedule/schedule_router.dart';
 import 'package:academico_mobile/app/pages/school_records/school_records_page.dart';
-import 'package:academico_mobile/app/pages/splash/splash_page.dart';
+import 'package:academico_mobile/app/pages/splash/splash_route.dart';
 import 'package:flutter/material.dart';
 
 class AcademicoMobile extends StatelessWidget {
@@ -22,7 +22,7 @@ class AcademicoMobile extends StatelessWidget {
         theme: ThemeConfig.theme,
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => const SplashPage(),
+          '/': (context) => SplashRoute.page,
           '/login': (context) => LoginRouter.page,
           '/schedule': (context) => ScheduleRouter.page,
           '/daily': (context) => DailyRouter.page,

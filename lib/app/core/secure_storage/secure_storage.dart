@@ -25,4 +25,8 @@ class SecureStorage {
   Future<String?> getPassWord() async {
     return await storage.read(key: _keyPassWord);
   }
+
+  Future deleteAll() async {
+    await storage.deleteAll();
+  }
 }
