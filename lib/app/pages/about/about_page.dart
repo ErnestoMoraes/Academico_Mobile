@@ -32,18 +32,20 @@ class AboutPage extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/images/logos/logo_academico.png',
-                  height: context.percentHeight(.2),
+                 width: context.percentWidth(.6),
                 ),
                 Text(
                   'Acadêmico Mobile',
                   style: context.textStyles.texLabelH1.copyWith(
                     color: context.colorsApp.cardwhite,
-                    fontSize: context.percentHeight(.03),
+                    fontSize: context.percentHeight(.025),
                   ),
                 ),
+                SizedBox(height: context.percentHeight(.01)),
                 Text('Versão 1.0.0',
                     style: context.textStyles.texLabelH4.copyWith(
                       color: context.colorsApp.cardwhite,
+                      fontSize: context.percentHeight(.015),
                     )),
               ],
             ),
