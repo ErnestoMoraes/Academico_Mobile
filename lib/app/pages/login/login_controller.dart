@@ -14,8 +14,10 @@ class LoginController extends Cubit<LoginState> {
     try {
       emit(state.copyWith(status: LoginStatus.login));
       final authModel = await _authRepository.login(matricula, password);
+
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('access_token', authModel.accessToken);
+      
       emit(state.copyWith(status: LoginStatus.sucess));
     } on UnauthorizedException catch (e, s) {
       log('Permissão Negada Controller 1', error: e, stackTrace: s);

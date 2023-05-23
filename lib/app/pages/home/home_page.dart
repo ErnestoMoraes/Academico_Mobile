@@ -1,3 +1,4 @@
+import 'package:academico_mobile/app/core/secure_storage/secure_storage.dart';
 import 'package:academico_mobile/app/core/ui/base_state/base_state.dart';
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
@@ -7,6 +8,7 @@ import 'package:academico_mobile/app/pages/home/home_state.dart';
 import 'package:academico_mobile/app/pages/home/widgets/card_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,6 +19,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends BaseState<HomePage, HomeController> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final SecureStorage _secureStorage = SecureStorage();
+  final prefs = SharedPreferences.getInstance();
 
   @override
   void onReady() {
@@ -44,9 +48,8 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
 
   Widget finishDrawer(BuildContext context) => InkWell(
         onTap: () async {
-          await controller.logout().then((value) {
-            Navigator.of(context).pop();
-          });
+          prefs.then((value) => value.clear());
+          await controller.logout();
         },
         child: Container(
           padding: EdgeInsets.only(
@@ -173,6 +176,11 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
             error: () {
               hideLoader();
               showError(state.errorMessage ?? 'Error ao carregar Home Page');
+            },
+            deslogado: () {
+              hideLoader();
+              _secureStorage.deleteAll();
+              Navigator.of(context).pushReplacementNamed('/login');
             },
           );
         },

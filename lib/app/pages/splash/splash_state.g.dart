@@ -1,40 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_state.dart';
+part of 'splash_state.dart';
 
 // **************************************************************************
 // MatchExtensionGenerator
 // **************************************************************************
 
-extension HomeStateStatusMatch on HomeStateStatus {
+extension SplashStatusMatch on SplashStatus {
   T match<T>(
       {required T Function() initial,
       required T Function() loading,
       required T Function() loaded,
-      required T Function() deslogado,
       required T Function() error}) {
     final v = this;
-    if (v == HomeStateStatus.initial) {
+    if (v == SplashStatus.initial) {
       return initial();
     }
 
-    if (v == HomeStateStatus.loading) {
+    if (v == SplashStatus.loading) {
       return loading();
     }
 
-    if (v == HomeStateStatus.loaded) {
+    if (v == SplashStatus.loaded) {
       return loaded();
     }
 
-    if (v == HomeStateStatus.deslogado) {
-      return deslogado();
-    }
-
-    if (v == HomeStateStatus.error) {
+    if (v == SplashStatus.error) {
       return error();
     }
 
-    throw Exception('HomeStateStatus.match failed, found no match for: $this');
+    throw Exception('SplashStatus.match failed, found no match for: $this');
   }
 
   T matchAny<T>(
@@ -42,26 +37,21 @@ extension HomeStateStatusMatch on HomeStateStatus {
       T Function()? initial,
       T Function()? loading,
       T Function()? loaded,
-      T Function()? deslogado,
       T Function()? error}) {
     final v = this;
-    if (v == HomeStateStatus.initial && initial != null) {
+    if (v == SplashStatus.initial && initial != null) {
       return initial();
     }
 
-    if (v == HomeStateStatus.loading && loading != null) {
+    if (v == SplashStatus.loading && loading != null) {
       return loading();
     }
 
-    if (v == HomeStateStatus.loaded && loaded != null) {
+    if (v == SplashStatus.loaded && loaded != null) {
       return loaded();
     }
 
-    if (v == HomeStateStatus.deslogado && deslogado != null) {
-      return deslogado();
-    }
-
-    if (v == HomeStateStatus.error && error != null) {
+    if (v == SplashStatus.error && error != null) {
       return error();
     }
 

@@ -29,7 +29,7 @@ class HomeController extends Cubit<HomeState> {
     emit(state.copyWith(status: HomeStateStatus.loading));
     try {
       await Future.delayed(const Duration(seconds: 2));
-      emit(state.copyWith(status: HomeStateStatus.loaded));
+      emit(state.copyWith(status: HomeStateStatus.deslogado, isOn: false));
     } catch (e, s) {
       log('Error ao realizar logout', error: e, stackTrace: s);
       emit(state.copyWith(
