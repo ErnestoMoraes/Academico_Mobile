@@ -1,4 +1,5 @@
 // ignore_for_file: unnecessary_string_interpolations, avoid_print
+import 'package:academico_mobile/app/core/secure_storage/secure_storage.dart';
 import 'package:academico_mobile/app/core/ui/base_state/base_state.dart';
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
@@ -24,6 +25,18 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
   TextEditingController passwordEC = TextEditingController();
   bool _obscuredText = true;
   bool check = false;
+  final SecureStorage _secureStorage = SecureStorage();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchSecureStorageData();
+  }
+
+  Future<void> fetchSecureStorageData() async {
+    matriculaEC.text = await _secureStorage.getUserName() ?? '';
+    passwordEC.text = await _secureStorage.getPassWord() ?? '';
+  }
 
   @override
   void dispose() {
@@ -32,14 +45,14 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
     super.dispose();
   }
 
+  void toogleCheck() {
+    setState(() {
+      check = !check;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    void toogleCheck() {
-      setState(() {
-        check = !check;
-      });
-    }
-
     return BlocListener<LoginController, LoginState>(
       listener: (context, state) {
         state.status.matchAny(
@@ -151,6 +164,16 @@ class _LoginPageState extends BaseState<LoginPage, LoginController> {
                                         formKey.currentState?.validate() ??
                                             false;
                                     if (formValid) {
+                                      if (check == true) {
+                                        await _secureStorage
+                                            .setUserName(matriculaEC.text);
+                                        await _secureStorage
+                                            .setPassWord(passwordEC.text);
+                                      } else {
+                                        await _secureStorage.setUserName('');
+                                        await _secureStorage.setPassWord('');
+                                      }
+
                                       await controller.login(
                                         matriculaEC.text,
                                         passwordEC.text,
