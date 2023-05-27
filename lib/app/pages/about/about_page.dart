@@ -46,7 +46,7 @@ class AboutPage extends StatelessWidget {
                     style: context.textStyles.texLabelH4.copyWith(
                       color: context.colorsApp.cardwhite,
                       fontSize: context.percentHeight(.015),
-                    )),
+                    ),),
               ],
             ),
           ),
