@@ -1,9 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
+import 'package:academico_mobile/app/core/config/sqlite/database_semestre.dart';
+import 'package:academico_mobile/app/models/daily_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:academico_mobile/app/pages/daily/daily_state.dart';
 import 'package:academico_mobile/app/repositories/daily/daily_repository.dart';
+import 'package:flutter/material.dart';
 
 class DailyController extends Cubit<DailyState> {
   final DailyRepository _dailyRepository;
@@ -15,7 +18,37 @@ class DailyController extends Cubit<DailyState> {
   Future<void> loadSemestre() async {
     emit(state.copyWith(status: DailyStateSatus.loading));
     try {
-      final semestres = await _dailyRepository.findDaily();
+      DatabaseSemestre data = DatabaseSemestre();
+      List<SemestreModel> semestres = await data.getAllSemestres();
+      if (semestres.isEmpty) {
+        semestres = await _dailyRepository.findDaily();
+        for (SemestreModel semestre in semestres) {
+          await data.saveSemestre(semestre);
+        }
+      }
+      emit(
+        state.copyWith(status: DailyStateSatus.loaded, semestres: semestres),
+      );
+    } catch (e, s) {
+      log('Erro ao buscar semestres', error: e, stackTrace: s);
+      emit(
+        state.copyWith(
+          status: DailyStateSatus.error,
+          errorMessage: 'Erro ao buscar semestres',
+        ),
+      );
+    }
+  }
+
+  Future<void> reload() async {
+    emit(state.copyWith(status: DailyStateSatus.loading));
+    try {
+      DatabaseSemestre data = DatabaseSemestre();
+      List<SemestreModel> semestres = [];
+      semestres = await _dailyRepository.findDaily();
+      for (SemestreModel semestre in semestres) {
+        await data.saveSemestre(semestre);
+      }
       emit(
         state.copyWith(status: DailyStateSatus.loaded, semestres: semestres),
       );

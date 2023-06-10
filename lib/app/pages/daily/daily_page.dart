@@ -30,9 +30,10 @@ class _DailyPageState extends BaseState<DailyPage, DailyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar.normal(
+      appBar: MyAppbar.reload(
         title: 'Meus Diários',
         onPressed: () => Navigator.pop(context),
+        onTapReload: () => controller.reload(),
       ),
       body: BlocConsumer<DailyController, DailyState>(
         listener: (context, state) {

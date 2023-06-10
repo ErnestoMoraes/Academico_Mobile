@@ -5,6 +5,7 @@ import 'package:academico_mobile/app/core/exceptions/unauthorized_exception.dart
 import 'package:academico_mobile/app/core/rest_client/custom_dio.dart';
 import 'package:academico_mobile/app/models/auth_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import './auth_repository.dart';
 
@@ -18,6 +19,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthModel> login(String matricula, String password) async {
     try {
+      debugPrint('Chegou em Login .....');
       final response = await dio.auth().post(
         '/login',
         data: {'matricula': matricula, 'password': password},

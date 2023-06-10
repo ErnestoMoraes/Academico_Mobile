@@ -11,7 +11,7 @@ class SplashController extends Cubit<SplashState> {
   Future<void> splashLogin(String matricula, String password) async {
     emit(state.copyWith(status: SplashStatus.loading));
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      // await Future.delayed(const Duration(seconds: 2));
       final authModel = await _authRepository.login(matricula, password);
 
       final prefs = await SharedPreferences.getInstance();
