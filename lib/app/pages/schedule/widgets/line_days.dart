@@ -7,7 +7,7 @@ import '../../../core/ui/styles/text_styles.dart';
 // ignore: must_be_immutable
 class LineDays extends StatefulWidget {
   final int hoje;
-  final Horario day;
+  final CronogramaModel day;
   final VoidCallback onPressed;
   Color? color;
 

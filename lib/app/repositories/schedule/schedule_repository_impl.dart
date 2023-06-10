@@ -17,11 +17,11 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
   });
 
   @override
-  Future<List<Horario>> findSchedule() async {
+  Future<List<CronogramaModel>> findSchedule() async {
     try {
       final result = await dio.auth().get('/horarios');
       final data = json.decode(result.data);
-      final retorno = (data as List).map((e) => Horario.fromJson(e)).toList();
+      final retorno = (data as List).map((e) => CronogramaModel.fromJson(e)).toList();
       return retorno;
     } on DioError catch (e, s) {
       log('Erro ao buscar horários', error: e, stackTrace: s);

@@ -1,12 +1,10 @@
 import 'package:academico_mobile/academico_mobile.dart';
 import 'package:academico_mobile/app/core/config/env/env.dart';
-import 'package:academico_mobile/app/core/config/hive/hive_config.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Env.instance.load();
-  await HiveConfig.start();
   runApp(const AcademicoMobile());
 }
 

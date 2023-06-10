@@ -1,9 +1,11 @@
 import 'package:academico_mobile/app/models/daily_model.dart';
+import 'package:academico_mobile/app/models/schedule_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class DatabaseSemestre {
+class DatabaseGlobal {
   static Database? _database;
+  static const String databaseName = 'mydatabase.db';
 
   Future<Database> get database async {
     _database ??= await _initDatabase();
@@ -12,7 +14,7 @@ class DatabaseSemestre {
 
   Future<Database> _initDatabase() async {
     String databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'mydatabase.db');
+    String path = join(databasesPath, databaseName);
 
     return await openDatabase(
       path,
@@ -22,6 +24,26 @@ class DatabaseSemestre {
   }
 
   Future<void> _createDatabase(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE horario (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        dia TEXT
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE horario_detalhado (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        horario_id INTEGER,
+        horario TEXT,
+        disciplina TEXT,
+        professor TEXT,
+        turma TEXT,
+        sala TEXT,
+        FOREIGN KEY (horario_id) REFERENCES horario (id)
+      )
+    ''');
+
     await db.execute('''
       CREATE TABLE semestre (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -53,6 +75,61 @@ class DatabaseSemestre {
       )
     ''');
   }
+
+  Future<void> saveHorario(CronogramaModel horario) async {
+    Database db = await database;
+
+    int horarioId = await db.insert('horario', {'dia': horario.dia});
+
+    for (HorarioDetalhado horarioDetalhado in horario.horarios) {
+      await db.insert('horario_detalhado', {
+        'horario_id': horarioId,
+        'horario': horarioDetalhado.horario,
+        'disciplina': horarioDetalhado.disciplina,
+        'professor': horarioDetalhado.professor,
+        'turma': horarioDetalhado.turma,
+        'sala': horarioDetalhado.sala,
+      });
+    }
+  }
+
+  Future<List<CronogramaModel>> getAllCronograma() async {
+    Database db = await database;
+
+    List<Map<String, dynamic>> horarioRows = await db.query('horario');
+    List<CronogramaModel> horarios = [];
+
+    for (Map<String, dynamic> horarioRow in horarioRows) {
+      int horarioId = horarioRow['id'];
+      String dia = horarioRow['dia'];
+
+      List<Map<String, dynamic>> horarioDetalhadoRows = await db.query(
+          'horario_detalhado',
+          where: 'horario_id = ?',
+          whereArgs: [horarioId]);
+      List<HorarioDetalhado> horariosDetalhados = [];
+
+      for (Map<String, dynamic> horarioDetalhadoRow in horarioDetalhadoRows) {
+        horariosDetalhados.add(HorarioDetalhado(
+          id: horarioDetalhadoRow['id'],
+          horario: horarioDetalhadoRow['horario'],
+          disciplina: horarioDetalhadoRow['disciplina'],
+          professor: horarioDetalhadoRow['professor'],
+          turma: horarioDetalhadoRow['turma'],
+          sala: horarioDetalhadoRow['sala'],
+        ));
+      }
+
+      horarios.add(CronogramaModel(
+          id: horarioId, dia: dia, horarios: horariosDetalhados));
+    }
+
+    return horarios;
+  }
+
+  // Future<void> _createDatabase(Database db, int version) async {
+
+  // }
 
   Future<void> saveSemestre(SemestreModel semestre) async {
     Database db = await database;

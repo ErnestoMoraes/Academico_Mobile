@@ -17,7 +17,7 @@ enum ScheduleStatus {
 
 class ScheduleState extends Equatable {
   final ScheduleStatus status;
-  final List<Horario> schedule;
+  final List<CronogramaModel> schedule;
   final String? errorMessage;
   final int? selectedDay;
 
@@ -30,7 +30,7 @@ class ScheduleState extends Equatable {
 
   ScheduleState.initial()
       : status = ScheduleStatus.initial,
-        schedule = <Horario>[],
+        schedule = <CronogramaModel>[],
         errorMessage = null,
         selectedDay = DateTime.now().weekday;
 
@@ -39,7 +39,7 @@ class ScheduleState extends Equatable {
 
   ScheduleState copyWith({
     ScheduleStatus? status,
-    List<Horario>? schedule,
+    List<CronogramaModel>? schedule,
     String? errorMessage,
     int? selectedDay,
   }) {
