@@ -57,7 +57,8 @@ class DatabaseSemestre {
   Future<void> saveSemestre(SemestreModel semestre) async {
     Database db = await database;
 
-    int semestreId = await db.insert('semestre', {'semestre': semestre.semestre});
+    int semestreId =
+        await db.insert('semestre', {'semestre': semestre.semestre});
 
     for (DisciplinaModel disciplina in semestre.disciplinas) {
       int disciplinaId = await db.insert('disciplina', {
@@ -92,6 +93,13 @@ class DatabaseSemestre {
     }
   }
 
+  Future<void> deleteAllData() async {
+    Database db = await database;
+    await db.delete('semestre');
+    await db.delete('disciplina');
+    await db.delete('resumo');
+  }
+
   Future<List<SemestreModel>> getAllSemestres() async {
     Database db = await database;
 
@@ -102,7 +110,8 @@ class DatabaseSemestre {
       int semestreId = semestreRow['id'];
       String semestre = semestreRow['semestre'];
 
-      List<Map<String, dynamic>> disciplinaRows = await db.query('disciplina', where: 'semestre_id = ?', whereArgs: [semestreId]);
+      List<Map<String, dynamic>> disciplinaRows = await db.query('disciplina',
+          where: 'semestre_id = ?', whereArgs: [semestreId]);
       List<DisciplinaModel> disciplinas = [];
 
       for (Map<String, dynamic> disciplinaRow in disciplinaRows) {
@@ -110,7 +119,8 @@ class DatabaseSemestre {
         String nome = disciplinaRow['nome'];
         String professor = disciplinaRow['professor'];
 
-        List<Map<String, dynamic>> resumoRows = await db.query('resumo', where: 'disciplina_id = ?', whereArgs: [disciplinaId]);
+        List<Map<String, dynamic>> resumoRows = await db.query('resumo',
+            where: 'disciplina_id = ?', whereArgs: [disciplinaId]);
         List<String> presencas = [];
         List<String> ausencias = [];
         List<String> pendentes = [];

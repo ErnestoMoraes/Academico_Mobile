@@ -1,5 +1,6 @@
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
 import 'package:academico_mobile/app/core/ui/styles/colors_app.dart';
+import 'package:academico_mobile/app/core/ui/widgets/my_appbar.dart';
 import 'package:flutter/material.dart';
 
 class SchoolRecordsPage extends StatefulWidget {
@@ -13,8 +14,9 @@ class _SchoolRecordsPageState extends State<SchoolRecordsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('School Records'),
+      appBar: MyAppbar.normal(
+        title: 'Histórico Escolar',
+        onPressed: () => Navigator.pop(context),
       ),
       body: Center(
         child: Text(

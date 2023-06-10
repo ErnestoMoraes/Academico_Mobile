@@ -25,8 +25,9 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppbar(
-          title: widget.disciplina.nome,
-          onPressed: () => Navigator.pop(context)),
+        title: widget.disciplina.nome,
+        onPressed: () => Navigator.pop(context),
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.percentWidth(0.045)),
         child: SingleChildScrollView(
