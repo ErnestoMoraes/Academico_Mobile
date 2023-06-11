@@ -22,6 +22,7 @@ class DisciplinaModel {
   String id;
   String nome;
   String professor;
+  
   Resumo resumo;
   List<String> avaliacoes;
 

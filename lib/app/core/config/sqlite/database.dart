@@ -18,62 +18,72 @@ class DatabaseGlobal {
 
     return await openDatabase(
       path,
-      version: 1,
+      version: 20,
       onCreate: _createDatabase,
     );
   }
 
   Future<void> _createDatabase(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE horario (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        dia TEXT
-      )
-    ''');
+    CREATE TABLE horario (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      dia TEXT
+    )
+  ''');
 
     await db.execute('''
-      CREATE TABLE horario_detalhado (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        horario_id INTEGER,
-        horario TEXT,
-        disciplina TEXT,
-        professor TEXT,
-        turma TEXT,
-        sala TEXT,
-        FOREIGN KEY (horario_id) REFERENCES horario (id)
-      )
-    ''');
+    CREATE TABLE horario_detalhado (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      horario_id INTEGER,
+      horario TEXT,
+      disciplina TEXT,
+      professor TEXT,
+      turma TEXT,
+      sala TEXT,
+      FOREIGN KEY (horario_id) REFERENCES horario (id)
+    )
+  ''');
 
     await db.execute('''
-      CREATE TABLE semestre (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        semestre TEXT
-      )
-    ''');
+    CREATE TABLE semestre (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      semestre TEXT
+    )
+  ''');
 
     await db.execute('''
-      CREATE TABLE disciplina (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        semestre_id INTEGER,
-        nome TEXT,
-        professor TEXT,
-        carga_horaria TEXT,
-        faltas TEXT,
-        aulas_futuras TEXT,
-        FOREIGN KEY (semestre_id) REFERENCES semestre (id)
-      )
-    ''');
+  CREATE TABLE disciplina (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    semestre_id INTEGER,
+    nome TEXT,
+    professor TEXT,
+    carga_horaria TEXT,
+    faltas TEXT,
+    aulas_futuras TEXT,
+    avaliacoes TEXT, -- Adicionar essa linha para definir a coluna "avaliacoes"
+    FOREIGN KEY (semestre_id) REFERENCES semestre (id)
+  )
+''');
 
     await db.execute('''
-      CREATE TABLE resumo (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        disciplina_id INTEGER,
-        presenca TEXT,
-        ausencia TEXT,
-        pendente TEXT,
-        FOREIGN KEY (disciplina_id) REFERENCES disciplina (id)
-      )
-    ''');
+    CREATE TABLE avaliacoes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      disciplina_id INTEGER,
+      avaliacao TEXT,
+      FOREIGN KEY (disciplina_id) REFERENCES disciplina (id)
+    )
+  ''');
+
+    await db.execute('''
+    CREATE TABLE resumo (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      disciplina_id INTEGER,
+      presenca TEXT,
+      ausencia TEXT,
+      pendente TEXT,
+      FOREIGN KEY (disciplina_id) REFERENCES disciplina (id)
+    )
+  ''');
   }
 
   Future<void> saveHorario(CronogramaModel horario) async {
@@ -147,6 +157,13 @@ class DatabaseGlobal {
         'aulas_futuras': disciplina.resumo.aulasFuturas,
       });
 
+      for (String avaliacoes in disciplina.avaliacoes) {
+        await db.insert('disciplina', {
+          'semestre_id': semestreId,
+          'avaliacoes':
+              (avaliacoes == '' || avaliacoes == ' ') ? '99' : avaliacoes,
+        });
+      }
       for (String presenca in disciplina.resumo.presencas) {
         await db.insert('resumo', {
           'disciplina_id': disciplinaId,
@@ -170,15 +187,6 @@ class DatabaseGlobal {
     }
   }
 
-  Future<void> deleteAllData() async {
-    Database db = await database;
-    await db.delete('semestre');
-    await db.delete('disciplina');
-    await db.delete('resumo');
-    await db.delete('horario');
-    await db.delete('horario_detalhado');
-  }
-
   Future<List<SemestreModel>> getAllSemestres() async {
     Database db = await database;
 
@@ -197,6 +205,14 @@ class DatabaseGlobal {
         int disciplinaId = disciplinaRow['id'];
         String nome = disciplinaRow['nome'];
         String professor = disciplinaRow['professor'];
+
+        List<Map<String, dynamic>> avaliacoesRows = await db.query('avaliacoes',
+            where: 'disciplina_id = ?', whereArgs: [disciplinaId]);
+        List<String> avaliacoes = [];
+
+        for (Map<String, dynamic> avaliacoesRow in avaliacoesRows) {
+          avaliacoes.add(avaliacoesRow['avaliacoes']);
+        }
 
         List<Map<String, dynamic>> resumoRows = await db.query('resumo',
             where: 'disciplina_id = ?', whereArgs: [disciplinaId]);
@@ -228,7 +244,7 @@ class DatabaseGlobal {
             ausencias: ausencias,
             pendentes: pendentes,
           ),
-          avaliacoes: [],
+          avaliacoes: avaliacoes,
         );
 
         disciplinas.add(disciplina);
@@ -243,5 +259,12 @@ class DatabaseGlobal {
     }
 
     return semestres;
+  }
+
+  Future<void> deleteAllData() async {
+    Database db = await database;
+    await db.delete('semestre');
+    await db.delete('disciplina');
+    await db.delete('resumo');
   }
 }
