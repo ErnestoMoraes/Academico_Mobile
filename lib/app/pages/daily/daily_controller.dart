@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 import 'package:academico_mobile/app/core/config/sqlite/database.dart';
 import 'package:academico_mobile/app/models/daily_model.dart';

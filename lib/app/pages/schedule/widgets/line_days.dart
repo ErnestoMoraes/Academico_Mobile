@@ -32,6 +32,27 @@ class _LineDaysState extends State<LineDays> {
     }
   }
 
+  String convertDayOfWeek(String day) {
+    switch (day.toLowerCase()) {
+      case 'mon':
+        return 'Seg';
+      case 'tue':
+        return 'Ter';
+      case 'wed':
+        return 'Qua';
+      case 'thu':
+        return 'Qui';
+      case 'fri':
+        return 'Sex';
+      case 'sat':
+        return 'Sáb';
+      case 'sun':
+        return 'Dom';
+      default:
+        return 'Invalid';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -55,7 +76,7 @@ class _LineDaysState extends State<LineDays> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              widget.day.dia,
+              convertDayOfWeek(widget.day.dia),
               style: TextStyles.instance.texLabelH4.copyWith(
                 color: ColorsApp.instance.labelblack3,
                 fontWeight: TextStyles.instance.textSemiBold.fontWeight,

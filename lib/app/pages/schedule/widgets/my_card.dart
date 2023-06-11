@@ -13,19 +13,11 @@ class MyCard extends StatelessWidget {
   });
 
   colorBody() {
-    if (horarioDetalhado.horario == '18:30 | 19:19') {
-      return ColorsApp.instance.tarde;
-    } else {
-      return ColorsApp.instance.cardnoselected;
-    }
+    return ColorsApp.instance.cardnoselected;
   }
 
   colorLabel() {
-    if (horarioDetalhado.horario == '18:30 | 19:19') {
-      return ColorsApp.instance.cardwhite;
-    } else {
-      return ColorsApp.instance.cardwhite;
-    }
+    return ColorsApp.instance.cardwhite;
   }
 
   @override

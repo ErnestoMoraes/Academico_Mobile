@@ -76,7 +76,9 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
                         daysOfWeek.add(startOfWeek.add(Duration(days: i)));
                       }
                       list = state
-                          .schedule[state.selectedDay ?? DateTime.now().weekday]
+                          .schedule[(state.selectedDay == 7)
+                              ? 0
+                              : state.selectedDay ?? DateTime.now().weekday]
                           .horarios;
                       return Padding(
                         padding: const EdgeInsets.only(right: 10),
@@ -136,16 +138,3 @@ class _SchedulePageState extends BaseState<SchedulePage, ScheduleController> {
     );
   }
 }
-
-// return Center(
-//                           child: Container(
-//                             height: 50,
-//                             width: 50,
-//                             color: Colors.amber,
-//                             child: Text(
-//                               'Nenhuma aula marcada para esse dia',
-//                               style: TextStyles.instance.textExtraBold.copyWith(
-//                                 color: ColorsApp.instance.cardwhite),
-//                             ),
-//                           ),
-//                         );
