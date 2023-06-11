@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:academico_mobile/app/core/config/sqlite/database.dart';
 import 'package:academico_mobile/app/core/ui/helpers/loader.dart';
 import 'package:academico_mobile/app/core/ui/helpers/messages.dart';
 import 'package:academico_mobile/app/core/ui/helpers/size_extensions.dart';
@@ -34,7 +35,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage>
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: MyAppbar(
+        appBar: MyAppbar.normal(
             title: 'Recuperar Senha',
             onPressed: () => Navigator.of(context).pop()),
         body: Padding(
@@ -60,7 +61,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage>
                     fontWeight: TextStyles.instance.textButtonLabel.fontWeight,
                   ),
                   decoration: InputDecoration(
-                    hintText: 'Matricula',
+                    hintText: 'matricula',
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -118,6 +119,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage>
                                 );
                               },
                             );
+                            matriculaEC.clear();
                           }
                         },
                       ),

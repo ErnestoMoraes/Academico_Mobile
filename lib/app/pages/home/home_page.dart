@@ -48,8 +48,9 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
 
   Widget finishDrawer(BuildContext context) => InkWell(
         onTap: () async {
-          prefs.then((value) => value.clear());
-          await controller.logout();
+          await controller
+              .logout()
+              .then((value) => Navigator.pushNamed(context, '/login'));
         },
         child: Container(
           padding: EdgeInsets.only(
@@ -108,7 +109,7 @@ class _HomePageState extends BaseState<HomePage, HomeController> {
             ),
             SizedBox(height: 4),
             Text(
-              'Nome do Aluno IFCE',
+              'IFCE - Campus Aracati',
               style: TextStyle(
                 fontSize: 15,
                 color: Colors.white70,

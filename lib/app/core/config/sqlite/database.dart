@@ -175,6 +175,8 @@ class DatabaseGlobal {
     await db.delete('semestre');
     await db.delete('disciplina');
     await db.delete('resumo');
+    await db.delete('horario');
+    await db.delete('horario_detalhado');
   }
 
   Future<List<SemestreModel>> getAllSemestres() async {
