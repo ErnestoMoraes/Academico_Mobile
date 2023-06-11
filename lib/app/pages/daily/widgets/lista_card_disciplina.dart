@@ -73,7 +73,12 @@ class ListaCardDisciplina extends StatelessWidget {
                       ),
                       SizedBox(height: context.screenHeight * 0.007),
                       Text(
-                        disciplina.professor.trim(),
+                        disciplina.professor
+                            .splitMapJoin(
+                              RegExp('; '),
+                              onMatch: (m) => '\n',
+                            )
+                            .trim(),
                         style: TextStyles.instance.texLabelH5.copyWith(
                           color: ColorsApp.instance.labelblack1,
                           fontWeight:
