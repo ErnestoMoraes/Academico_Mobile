@@ -16,7 +16,9 @@ class DailyController extends Cubit<DailyState> {
     emit(state.copyWith(status: DailyStateSatus.loading));
     try {
       DatabaseGlobal data = DatabaseGlobal();
-      List<SemestreModel> semestres = await data.getAllSemestres();
+      List<SemestreModel> semestres = await data
+          .getAllSemestres()
+          .then((value) => value.isEmpty ? <SemestreModel>[] : value);
       if (semestres.isEmpty) {
         semestres = await _dailyRepository.findDaily();
         for (SemestreModel semestre in semestres) {

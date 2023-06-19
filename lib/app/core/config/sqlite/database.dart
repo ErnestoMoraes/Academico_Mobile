@@ -18,7 +18,7 @@ class DatabaseGlobal {
 
     return await openDatabase(
       path,
-      version: 20,
+      version: 104,
       onCreate: _createDatabase,
     );
   }
@@ -161,7 +161,9 @@ class DatabaseGlobal {
         await db.insert('disciplina', {
           'semestre_id': semestreId,
           'avaliacoes':
-              (avaliacoes == '' || avaliacoes == ' ') ? '99' : avaliacoes,
+              (avaliacoes == '' || avaliacoes == ' ' || avaliacoes.isEmpty)
+                  ? '99'
+                  : avaliacoes,
         });
       }
       for (String presenca in disciplina.resumo.presencas) {
@@ -202,16 +204,16 @@ class DatabaseGlobal {
       List<DisciplinaModel> disciplinas = [];
 
       for (Map<String, dynamic> disciplinaRow in disciplinaRows) {
-        int disciplinaId = disciplinaRow['id'];
-        String nome = disciplinaRow['nome'];
-        String professor = disciplinaRow['professor'];
+        int disciplinaId = disciplinaRow['id'] ?? 0;
+        String nome = disciplinaRow['nome'] ?? 'oi';
+        String professor = disciplinaRow['professor'] ?? 'oi';
 
         List<Map<String, dynamic>> avaliacoesRows = await db.query('avaliacoes',
             where: 'disciplina_id = ?', whereArgs: [disciplinaId]);
         List<String> avaliacoes = [];
 
         for (Map<String, dynamic> avaliacoesRow in avaliacoesRows) {
-          avaliacoes.add(avaliacoesRow['avaliacoes']);
+          avaliacoes.add(avaliacoesRow['avaliacoes'] ?? '00');
         }
 
         List<Map<String, dynamic>> resumoRows = await db.query('resumo',
@@ -237,9 +239,9 @@ class DatabaseGlobal {
           nome: nome,
           professor: professor,
           resumo: Resumo(
-            cargaHoraria: disciplinaRow['carga_horaria'],
-            faltas: disciplinaRow['faltas'],
-            aulasFuturas: disciplinaRow['aulas_futuras'],
+            cargaHoraria: disciplinaRow['carga_horaria'] ?? '00',
+            faltas: disciplinaRow['faltas'] ?? '00',
+            aulasFuturas: disciplinaRow['aulas_futuras'] ?? '00',
             presencas: presencas,
             ausencias: ausencias,
             pendentes: pendentes,

@@ -23,7 +23,7 @@ class DailyRepositoryImpl implements DailyRepository {
       final semestres = list.map((e) => SemestreModel.fromJson(e)).toList();
       return semestres;
     } on DioError catch (e, s) {
-      log('Erro ao nuscar semestres', error: e, stackTrace: s);
+      log('Erro ao buscar semestres', error: e, stackTrace: s);
       throw RepositoryExceptions(message: 'Erro ao buscar semestres');
     }
   }
